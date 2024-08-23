@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'BebasNeue';
+  src: url('../fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+
+.masthead {
+  position: relative;
+  z-index: 1;
+}
+
+.masthead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+  z-index: -1; /* Behind text */
+}
+
+#title {
+  font-family: BebasNeue;
+  font-size: 6rem;
+  letter-spacing: 0.5rem;
+  color: white;
+}
+
+#searchButton {
+  box-sizing: border-box;
+  padding: 1.25rem 2.255rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 10rem;
+  width: 30%;
+}
+
+#searchButton:hover {
+  border-color: #f4623a;
+  color: #f4623a;
+  background-color: white;
+}
+
+#searchBar {
+  display: none; /* Initially hide the search bar */
+}
+
+#searchInput {
+  box-sizing: border-box;
+  padding: 1.25rem 2.255rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 10rem;
+  border: 1px solid #f4623a;
+  color: #f4623a;
+  width: 30%;
+}
+
+#searchInput::placeholder {
+  color: #f4623a;
+  opacity: 0.5; /* Ensures the color is not faded */
+}

@@ -57,3 +57,40 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+const searchButton = document.getElementById('searchButton');
+const searchBar = document.getElementById('searchBar');
+const searchInput = document.getElementById('searchInput');
+
+searchButton.onclick = function() {
+    // Toggle the visibility of the search bar
+    if (searchBar.style.display === 'none' || searchBar.style.display === '') {
+        searchButton.style.display = 'none';
+        searchBar.style.display = 'block';
+        searchInput.focus();
+    } else {
+        searchBar.style.display = 'none';
+    }
+};
+
+// API CALL
+searchInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        const movieTitle = searchInput.value;
+        const apiKey = '1f70a320'; // Replace with your actual API key
+        const apiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.Response === "True") {
+                    const movieDataString = JSON.stringify(data);
+                    const movieWindow = window.open('movie-info.html?movieData=' + encodeURIComponent(movieDataString), '_blank');
+                    movieWindow.focus();
+                } else {
+                    alert('Movie not found!');
+                }
+            })
+            .catch(error => console.error('Error fetching movie data:', error));
+    }
+});

@@ -21,6 +21,7 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/additional-styles.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -46,13 +47,16 @@
         <div class="container px-4 px-lg-5 h-100">
             <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 align-self-end">
-                    <h1 class="text-white font-weight-bold">CinePulse</h1>
+                    <h1 class="font-weight-bold" id="title">CinePulse</h1>
                     <hr class="divider" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">
                     <p class="text-white-75 mb-5">Discover and learn about a wide range of films with our intuitive
                         interface, offering quick access to movie information and reviews.</p>
-                    <a class="btn btn-primary btn-xl" href="#about">Start searching</a>
+                    <a class="btn btn-primary" id="searchButton">Start searching</a>
+                    <div id="searchBar">
+                        <input type="text" class="btn btn-light" id="searchInput">
+                    </div>
                 </div>
             </div>
         </div>
@@ -225,12 +229,6 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="js/background-img.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-
 </body>
 
 </html>

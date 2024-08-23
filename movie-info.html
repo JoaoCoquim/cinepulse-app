@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="movieTitle">Movie Info</title>
+    <link href="css/movie-page-styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="title"></h1>
+        <p><strong>Year:</strong> <span id="year"></span></p>
+        <p><strong>Rated:</strong> <span id="rated"></span></p>
+        <p><strong>Released:</strong> <span id="released"></span></p>
+        <p><strong>Runtime:</strong> <span id="runtime"></span></p>
+        <p><strong>Genre(s):</strong> <span id="genre"></span></p>
+        <p><strong>Director:</strong> <span id="director"></span></p>
+        <p><strong>Writer(s):</strong> <span id="writer"></span></p>
+        <p><strong>Actors:</strong> <span id="actors"></span></p>
+        <p><strong>Plot:</strong> <span id="plot"></span></p>
+        <p><strong>Language:</strong> <span id="language"></span></p>
+        <p><strong>Country:</strong> <span id="country"></span></p>
+        <p><strong>Awards:</strong> <span id="awards"></span></p>
+        <img id="poster" alt="Movie Poster">
+        <div class="ratings">
+            <div>
+                <span class="rating-source">IMDB:</span>
+                <span id="imdbRating"></span>
+            </div>
+            <div>
+                <span class="rating-source">Rotten Tomatoes:</span>
+                <span id="rottenTomatoesRating"></span>
+            </div>
+            <div>
+                <span class="rating-source">Metacritic:</span>
+                <span id="metacriticRating"></span>
+            </div>
+        </div>
+        <a id="imdbLink" class="imdb-link" target="_blank">View on IMDb</a>
+        <a href="index.html">Return to Homepage</a>
+    </div>
+    <script src="js/scripts.js"></script>
+
+    <script>
+        // Movie data will be passed as a query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieData = JSON.parse(urlParams.get('movieData'));
+
+        document.getElementById('title').textContent = movieData.Title;
+        document.getElementById('year').textContent = movieData.Year;
+        document.getElementById('rated').textContent = movieData.Rated;
+        document.getElementById('released').textContent = movieData.Released;
+        document.getElementById('runtime').textContent = movieData.Runtime;
+        document.getElementById('genre').textContent = movieData.Genre;
+        document.getElementById('director').textContent = movieData.Director;
+        document.getElementById('writer').textContent = movieData.Writer;
+        document.getElementById('actors').textContent = movieData.Actors;
+        document.getElementById('plot').textContent = movieData.Plot;
+        document.getElementById('language').textContent = movieData.Language;
+        document.getElementById('country').textContent = movieData.Country;
+        document.getElementById('awards').textContent = movieData.Awards;
+        document.getElementById('poster').src = movieData.Poster;
+
+        // Ratings
+        const imdbRating = movieData.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
+        const rottenTomatoesRating = movieData.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
+        const metacriticRating = movieData.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
+        document.getElementById('imdbRating').textContent = imdbRating;
+        document.getElementById('rottenTomatoesRating').textContent = rottenTomatoesRating;
+        document.getElementById('metacriticRating').textContent = metacriticRating;
+
+        // IMDb link
+        document.getElementById('imdbLink').href = `https://www.imdb.com/title/${movieData.imdbID}/`;
+    </script>
+</body>
+
+</html>
