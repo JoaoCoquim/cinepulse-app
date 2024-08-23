@@ -23,24 +23,36 @@ h1 {
     margin-top: 0;
 }
 
-.ratings {
-    display: flex;
-    gap: 15px;
-}
-
 .rating-source {
     font-weight: bold;
 }
 
-.imdb-link {
+#imdbLink, #return {
     display: inline-block;
-    margin-top: 20px;
     padding: 10px 15px;
-    background-color: #f4623a;
-    color: white;
     border-radius: 5px;
+    text-decoration: none;
 }
 
-.imdb-link:hover {
+#imdbLink {
     background-color: #f4623a;
+    color: white;
+}
+
+#imdbLink:hover {
+    color: #f4623a;
+    background-color: white;
+    border: 1px solid #f4623a;
+}
+
+#return {
+    margin-top: 10px;
+    background-color: grey;
+    color: white;
+}
+
+#return:hover {
+    color: grey;
+    background-color: white;
+    border: 1px solid grey;
 }

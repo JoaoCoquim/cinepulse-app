@@ -77,8 +77,9 @@ searchButton.onclick = function() {
 searchInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         const movieTitle = searchInput.value;
-        const apiKey = '1f70a320'; // Replace with your actual API key
+        const apiKey = '1f70a320';
         const apiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
+        // Example: https://www.omdbapi.com/?i=tt3896198&apikey=1f70a320
 
         fetch(apiUrl)
             .then(response => response.json())
