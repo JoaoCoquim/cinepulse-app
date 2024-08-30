@@ -44,6 +44,7 @@
 
 #searchBar {
   display: none; /* Initially hide the search bar */
+  position: relative;
 }
 
 #searchInput {
@@ -58,7 +59,25 @@
   width: 30%;
 }
 
-#searchInput::placeholder {
-  color: #f4623a;
-  opacity: 0.5;
+#suggestions {
+  position: absolute;
+  bottom: 100%; /* Positioned just below the input field */
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  font-family: BebasNeue;
+  letter-spacing: 0.1rem;
+  border: 1px solid #f4623a;
+}
+
+#suggestions li {
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+#suggestions li:hover {
+  background-color: #f88d6f;
 }

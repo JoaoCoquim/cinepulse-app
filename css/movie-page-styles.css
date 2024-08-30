@@ -11,7 +11,7 @@ img {
 }
 
 li {
-    margin: 8px;
+    margin: 0.5rem;
 }
 
 #title {
@@ -20,7 +20,7 @@ li {
 }
 
 #year, #genre {
-    font-size: 1.25rem;
+    font-size: 1.30rem;
     font-weight: 900;
 }
 
