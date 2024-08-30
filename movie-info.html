@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="movieTitle">Movie Info</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+
     <link href="css/movie-page-styles.css" rel="stylesheet">
 </head>
 
@@ -17,63 +20,53 @@
             <div class="col-md-4 mb-4 mb-md-0">
                 <img id="poster" class="img-fluid rounded" alt="Movie Poster">
             </div>
-            <div class="col-md-8">
-                <dl class="row">
-                    <dt class="col-sm-3">Year:</dt>
-                    <dd class="col-sm-9" id="year"></dd>
-                    
-                    <dt class="col-sm-3">Rated:</dt>
-                    <dd class="col-sm-9" id="rated"></dd>
-                    
-                    <dt class="col-sm-3">Released:</dt>
-                    <dd class="col-sm-9" id="released"></dd>
-                    
-                    <dt class="col-sm-3">Runtime:</dt>
-                    <dd class="col-sm-9" id="runtime"></dd>
-                    
-                    <dt class="col-sm-3">Genre(s):</dt>
-                    <dd class="col-sm-9" id="genre"></dd>
-                    
-                    <dt class="col-sm-3">Director:</dt>
-                    <dd class="col-sm-9" id="director"></dd>
-                    
-                    <dt class="col-sm-3">Writer(s):</dt>
-                    <dd class="col-sm-9" id="writer"></dd>
-                    
-                    <dt class="col-sm-3">Actors:</dt>
-                    <dd class="col-sm-9" id="actors"></dd>
-                    
-                    <dt class="col-sm-3">Plot:</dt>
-                    <dd class="col-sm-9" id="plot"></dd>
-                    
-                    <dt class="col-sm-3">Language:</dt>
-                    <dd class="col-sm-9" id="language"></dd>
-                    
-                    <dt class="col-sm-3">Country:</dt>
-                    <dd class="col-sm-9" id="country"></dd>
-                    
-                    <dt class="col-sm-3">Awards:</dt>
-                    <dd class="col-sm-9" id="awards"></dd>
-                </dl>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><span id="year"></span></li>
+                            <li><span id="genre"></span></li>
+                        </ul>
+                        <ul class="list-unstyled">
+                            <li><strong>Runtime:</strong> <span id="runtime"></span></li>
+                            <li><strong>Director:</strong> <span id="director"></span></li>
+                            <li><strong>Writer(s):</strong> <span id="writer"></span></li>
+                            <li><strong>Actors:</strong> <span id="actors"></span></li>
+                            <li><strong>Language:</strong> <span id="language"></span></li>
+                            <li><strong>Country:</strong> <span id="country"></span></li>
+                            <li><strong>Awards:</strong> <span id="awards"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="list-unstyled font-weight-bold">
+                            <li><a id="imdbLink" class="ratings-logos" target="_blank"><img src="img/IMDB_logo.svg"
+                                        alt="IMDB_logo"></a> <span id="imdbRating"></span>
+                            </li>
+                            <li><a id="rottenTomatoesLink" class="ratings-logos" target="_blank"><img
+                                        src="img/Rotten_Tomatoes_logo.svg" alt="Metacritic_logo"></a> <span
+                                    id="rottenTomatoesRating"></span></li>
+                            <li><a id="metacriticLink" class="ratings-logos" target="_blank"><img
+                                        src="img/Metacritic_logo.svg" alt="Metacritic_logo"></a> <span
+                                    id="metacriticRating"></span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="mb-4">
-            <h4>Ratings</h4>
             <ul class="list-unstyled">
-                <li><strong>IMDB:</strong> <span id="imdbRating"></span></li>
-                <li><strong>Rotten Tomatoes:</strong> <span id="rottenTomatoesRating"></span></li>
-                <li><strong>Metacritic:</strong> <span id="metacriticRating"></span></li>
+                <li><strong id="plot"></strong></li>
             </ul>
         </div>
-
-        <a id="imdbLink" class="btn btn-primary mb-4" target="_blank">View on IMDb</a>
-        <br>
         <a id="return" href="index.html">Return to Homepage</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="js/scripts.js"></script>
 
     <script>
@@ -83,8 +76,6 @@
 
         document.getElementById('title').textContent = movieData.Title;
         document.getElementById('year').textContent = movieData.Year;
-        document.getElementById('rated').textContent = movieData.Rated;
-        document.getElementById('released').textContent = movieData.Released;
         document.getElementById('runtime').textContent = movieData.Runtime;
         document.getElementById('genre').textContent = movieData.Genre;
         document.getElementById('director').textContent = movieData.Director;
@@ -96,6 +87,8 @@
         document.getElementById('awards').textContent = movieData.Awards;
         document.getElementById('poster').src = movieData.Poster;
 
+        document.title = movieData.Title;
+
         // Ratings
         const imdbRating = movieData.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
         const rottenTomatoesRating = movieData.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
@@ -106,6 +99,13 @@
 
         // IMDb link
         document.getElementById('imdbLink').href = `https://www.imdb.com/title/${movieData.imdbID}`;
+
+        // Rotten Tomatoes link
+        document.getElementById('rottenTomatoesLink').href = `https://www.rottentomatoes.com/`;
+
+        // Metacritic link
+        document.getElementById('metacriticLink').href = `https://www.metacritic.com/`;
+
     </script>
 </body>
 

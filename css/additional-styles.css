@@ -60,5 +60,5 @@
 
 #searchInput::placeholder {
   color: #f4623a;
-  opacity: 0.5; /* Ensures the color is not faded */
+  opacity: 0.5;
 }
