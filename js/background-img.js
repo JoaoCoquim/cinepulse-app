@@ -1,16 +1,16 @@
 const images = [
-    'img/movies/alien.jpg',
-    'img/movies/deadpool.jpg',
-    'img/movies/et.jpg',
-    'img/movies/inception.jpg',
-    'img/movies/inside-out.jpg',
-    'img/movies/it.jpg',
-    'img/movies/jurassic-park.jpg',
-    'img/movies/lord-of-the-rings.jpg',
-    'img/movies/matrix.jpg',
-    'img/movies/starwars.jpg',
-    'img/movies/up.jpg',
-    'img/movies/wall-e.jpg'
+    'img/movie-wallpapers/alien.jpg',
+    'img/movie-wallpapers/deadpool.jpg',
+    'img/movie-wallpapers/et.jpg',
+    'img/movie-wallpapers/inception.jpg',
+    'img/movie-wallpapers/inside-out.jpg',
+    'img/movie-wallpapers/it.jpg',
+    'img/movie-wallpapers/jurassic-park.jpg',
+    'img/movie-wallpapers/lord-of-the-rings.jpg',
+    'img/movie-wallpapers/matrix.jpg',
+    'img/movie-wallpapers/starwars.jpg',
+    'img/movie-wallpapers/up.jpg',
+    'img/movie-wallpapers/wall-e.jpg'
 ];
 
 let currentImageIndex = Math.floor(Math.random() * images.length);
