@@ -1,12 +1,3 @@
-/*!
-* Start Bootstrap - Creative v7.0.7 (https://startbootstrap.com/theme/creative)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-creative/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
-
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -77,8 +68,9 @@ const suggestions = document.getElementById('suggestions');
 
 searchInput.addEventListener('input', function () {
     const query = searchInput.value.trim();
-    if (query.length > 2) {
+    if (query.length > 1) {
         const apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=1f70a320`;
+        console.log('Fetching:', apiUrl);
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
@@ -101,6 +93,11 @@ searchInput.addEventListener('input', function () {
                         li.addEventListener('click', () => selectMovie(movie.imdbID));
                         suggestions.appendChild(li);
                     });
+
+                    // Handle "See More" and additional pagination if needed
+                } else if (data.Error === "Too many results.") {
+                    suggestions.innerHTML = `<li class="list-group-item" style="color: red">Too many results. Please refine your search.</li>`;
+                    suggestions.style.display = 'block';
                 } else {
                     suggestions.style.display = 'none';
                 }
