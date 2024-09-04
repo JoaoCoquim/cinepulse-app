@@ -65,18 +65,21 @@ searchButton.onclick = function () {
 };
 
 const suggestions = document.getElementById('suggestions');
+const warning = document.getElementById('warning');
+const apiKey = "1f70a320";
 
 searchInput.addEventListener('input', function () {
     const query = searchInput.value.trim();
     if (query.length > 1) {
-        const apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=1f70a320`;
-        console.log('Fetching:', apiUrl);
+        const apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${apiKey}`;
+        //console.log('Fetching:', apiUrl);
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 if (data.Response === "True") {
                     suggestions.innerHTML = '';
                     suggestions.style.display = 'block';
+                    warning.style.display = 'none';
 
                     data.Search.forEach(movie => {
                         const li = document.createElement('li');
@@ -96,8 +99,8 @@ searchInput.addEventListener('input', function () {
 
                     // Handle "See More" and additional pagination if needed
                 } else if (data.Error === "Too many results.") {
-                    suggestions.innerHTML = `<li class="list-group-item" style="color: red">Too many results. Please refine your search.</li>`;
-                    suggestions.style.display = 'block';
+                    warning.innerHTML = `<p id="error">Too many results. Please refine your search.</p>`;
+                    warning.style.display = 'block';
                 } else {
                     suggestions.style.display = 'none';
                 }
@@ -109,7 +112,7 @@ searchInput.addEventListener('input', function () {
 });
 
 function selectMovie(imdbID) {
-    const apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=1f70a320`;
+    const apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=${apiKey}`;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {

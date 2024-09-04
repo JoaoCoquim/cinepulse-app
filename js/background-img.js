@@ -8,7 +8,7 @@ const images = [
     'img/movie-wallpapers/jurassic-park.jpg',
     'img/movie-wallpapers/lord-of-the-rings.jpg',
     'img/movie-wallpapers/matrix.jpg',
-    'img/movie-wallpapers/starwars.jpg',
+    'img/movie-wallpapers/star-wars.jpg',
     'img/movie-wallpapers/up.jpg',
     'img/movie-wallpapers/wall-e.jpg'
 ];

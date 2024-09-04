@@ -19,12 +19,16 @@ li {
     font-weight: 900;
 }
 
-#year, #genre {
+#year,
+#genre {
     font-size: 1.30rem;
     font-weight: 900;
 }
 
-#imdbLink, #rottenTomatoesLink, #metacriticLink, #return {
+#imdbLink,
+#rottenTomatoesLink,
+#metacriticLink,
+#return {
     display: inline-block;
     padding: 10px 15px;
     border-radius: 5px;
@@ -36,6 +40,16 @@ li {
     height: auto;
 }
 
+#imdbRating,
+#rottenTomatoesRating,
+#metacriticRating {
+    font-size: 20px;
+}
+
+#plot {
+    font-size: 22px;
+}
+
 #return {
     background-color: #f4623a;
     color: white;
@@ -45,4 +59,93 @@ li {
     color: #f4623a;
     background-color: white;
     border: 1px solid #f4623a;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1200px) {
+
+    /* Small screens */
+    .rating-container {
+        justify-content: left;
+    }
+
+    .ratings-logos {
+        width: 100px;
+        height: auto;
+    }
+
+    #imdbRating,
+    #rottenTomatoesRating,
+    #metacriticRating {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    /* Tablet screens */
+    .ratings-logos {
+        width: 100px;
+        height: auto;
+    }
+
+    #plot {
+        font-size: 20px;
+    }
+
+    #imdbRating,
+    #rottenTomatoesRating,
+    #metacriticRating {
+        font-size: 15px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Small tablet screens */
+    .rating-container {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+
+    .ratings-logos {
+        width: 160px;
+        height: auto;
+    }
+
+    #imdbRating,
+    #rottenTomatoesRating,
+    #metacriticRating {
+        font-size: 25px;
+        margin: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Smartphone screens */
+    .rating-container {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+
+    #plot {
+        font-size: 16px;
+    }
+
+    .ratings-logos {
+        width: 160px;
+        height: auto;
+    }
+
+    #imdbRating,
+    #rottenTomatoesRating,
+    #metacriticRating {
+        font-size: 25px;
+        margin: 30px;
+    }
+
 }
