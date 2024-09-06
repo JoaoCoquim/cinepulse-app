@@ -1,7 +1,7 @@
 const apiKey = "1f70a320";
 const suggestions = document.getElementById('suggestions');
 const warning = document.getElementById('warning');
-const moviesWithTwoLetters = ["A.I.", "B.S.", "CQ", "D2", "Da", "Em", "F/X", "Go", "Ho!", "I.Q.", "If", "If....", "IO", "It", "Jo", "No", "PK", "RV", "Up", "Us", "W.E."];
+const moviesWithTwoLetters = ["A.I.", "B.S.", "CQ", "D2", "Da", "Em", "F/X", "Go", "Ho!", "I.Q.", "If", "If....", "IO", "It", "Jo", "Pi", "No", "PK", "RV", "Up", "Us", "W.E."];
 
 searchInput.addEventListener('input', function () {
     const query = searchInput.value.trim();
