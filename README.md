@@ -24,13 +24,17 @@ Here’s a glimpse of the application:
 
 To use the application:
 
-1. Type a movie name in the search bar.
-2. View real-time suggestions and select a movie to see detailed information.
+1. Clone the repository: `git clone <repo-url>`
+2. Navigate to the project directory: `cd cinepulse-app`
+3. Open `index.html` in your browser to view the application.
+4. Type a movie name in the search bar.
+5. View real-time suggestions and select a movie to see detailed information.
 
 ## Technologies Used
 
-- **OMDb API**: For fetching movie data.
+- **JavaScript**: For dynamic functionality and API integration.
 - **Bootstrap**: For responsive design.
+- **OMDb API**: For fetching movie data.
 
 ## Current Status
 
