@@ -1,6 +1,6 @@
 const apiKey = "1f70a320";
 const suggestions = document.getElementById('suggestions');
-const warning = document.getElementById('warning');
+const warnings = document.getElementById('warnings');
 const moviesWithTwoLetters = ["A.I.", "B.S.", "CQ", "D2", "Da", "Em", "F/X", "Go", "Ho!", "I.Q.", "If", "If....", "IO", "It", "Jo", "Pi", "No", "PK", "RV", "Up", "Us", "W.E."];
 
 searchInput.addEventListener('input', function () {
@@ -17,7 +17,7 @@ searchInput.addEventListener('input', function () {
         }
     });
 
-    console.log('Fetching:', apiUrl);
+    //console.log('Fetching:', apiUrl);
 
     if (query.length > 1) {
         fetch(apiUrl)
@@ -26,7 +26,7 @@ searchInput.addEventListener('input', function () {
                 if (data.Response === "True") {
                     suggestions.innerHTML = '';
                     suggestions.style.display = 'block';
-                    warning.style.display = 'none';
+                    warnings.style.display = 'none';
 
                     // Process results from movies with 2 letters
                     if (isTwoLetterMatch) {
@@ -64,12 +64,12 @@ searchInput.addEventListener('input', function () {
 
                     // Handle other results
                 } else if (data.Error === "Too many results.") {
-                    warning.innerHTML = `<p id="error">Too many results. Please check your syntax!</p>`;
-                    warning.style.display = 'block';
+                    warnings.innerHTML = `<p id="error">Too many results. Please check your syntax!</p>`;
+                    warnings.style.display = 'block';
                     suggestions.style.display = 'none';
                 } else if (data.Error === "Movie not found!") {
-                    warning.innerHTML = `<p id="error">Movie not found. Please check your syntax!</p>`;
-                    warning.style.display = 'block';
+                    warnings.innerHTML = `<p id="error">Movie not found. Please check your syntax!</p>`;
+                    warnings.style.display = 'block';
                     suggestions.style.display = 'none';
                 } else {
                     suggestions.style.display = 'none';

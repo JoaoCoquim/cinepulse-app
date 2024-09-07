@@ -67,5 +67,6 @@ searchButton.onclick = function () {
 document.addEventListener('click', (e) => {
     if (!searchBar.contains(e.target)) {
         suggestions.style.display = 'none';
+        warnings.style.display = 'none';
     }
 });

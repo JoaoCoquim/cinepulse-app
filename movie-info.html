@@ -38,28 +38,38 @@
 
             <!-- Ratings section -->
             <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <ul class="list-unstyled font-weight-bold">
-                            <li class="rating-container">
-                                <a id="imdbLink" class="ratings-logos mb-2" target="_blank"><img
-                                        src="img/logos/IMDB_logo.svg" alt="IMDB logo"></a> <span id="imdbRating"></span>
-                            </li>
-                            <li class="rating-container">
-                                <a id="rottenTomatoesLink" class="ratings-logos" target="_blank"><img
-                                        src="img/logos/Rotten_Tomatoes_logo.svg" alt="Rotten Tomatoes logo"></a>
-                                <span id="rottenTomatoesRating"></span>
-                            </li>
-                            <li class="rating-container">
-                                <a id="metacriticLink" class="ratings-logos" target="_blank"><img
-                                        src="img/logos/Metacritic_logo.svg" alt="Metacritic logo"></a> <span
-                                    id="metacriticRating"></span>
-                            </li>
-                        </ul>
+                <div class="row mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="list-unstyled font-weight-bold">
+                                <li class="rating-container">
+                                    <a id="imdbLink" class="ratings-logos mb-2" target="_blank"><img
+                                            src="img/logos/IMDB_logo.svg" alt="IMDB logo"></a> <span
+                                        id="imdbRating"></span>
+                                </li>
+                                <li class="rating-container">
+                                    <a id="rottenTomatoesLink" class="ratings-logos" target="_blank"><img
+                                            src="img/logos/Rotten_Tomatoes_logo.svg" alt="Rotten Tomatoes logo"></a>
+                                    <span id="rottenTomatoesRating"></span>
+                                </li>
+                                <li class="rating-container">
+                                    <a id="metacriticLink" class="ratings-logos" target="_blank"><img
+                                            src="img/logos/Metacritic_logo.svg" alt="Metacritic logo"></a> <span
+                                        id="metacriticRating"></span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                </div>
+                <div class="row">
+                    <iframe id="trailerPlayer" width="232" height="176" src="" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                 </div>
             </div>
         </div>
+
+
 
         <div class="mb-4">
             <ul class="list-unstyled">
@@ -70,45 +80,8 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        // Movie data will be passed as a query string
-        const urlParams = new URLSearchParams(window.location.search);
-        const movieData = JSON.parse(urlParams.get('movieData'));
-
-        document.getElementById('title').textContent = movieData.Title;
-        document.getElementById('year').textContent = movieData.Year;
-        document.getElementById('runtime').textContent = movieData.Runtime;
-        document.getElementById('genre').textContent = movieData.Genre;
-        document.getElementById('director').textContent = movieData.Director;
-        document.getElementById('writer').textContent = movieData.Writer;
-        document.getElementById('actors').textContent = movieData.Actors;
-        document.getElementById('plot').textContent = movieData.Plot;
-        document.getElementById('language').textContent = movieData.Language;
-        document.getElementById('country').textContent = movieData.Country;
-        document.getElementById('awards').textContent = movieData.Awards;
-        document.getElementById('poster').src = movieData.Poster;
-
-        document.title = movieData.Title;
-
-        // Ratings
-        const imdbRating = movieData.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
-        const rottenTomatoesRating = movieData.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
-        const metacriticRating = movieData.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
-        document.getElementById('imdbRating').textContent = imdbRating;
-        document.getElementById('rottenTomatoesRating').textContent = rottenTomatoesRating;
-        document.getElementById('metacriticRating').textContent = metacriticRating;
-
-        // IMDb link
-        document.getElementById('imdbLink').href = `https://www.imdb.com/title/${movieData.imdbID}`;
-
-        // Rotten Tomatoes link
-        document.getElementById('rottenTomatoesLink').href = `https://www.rottentomatoes.com/`;
-
-        // Metacritic link
-        document.getElementById('metacriticLink').href = `https://www.metacritic.com/`;
-
-    </script>
+    <script src="js/movie-data.js"></script>
+    <script src="js/youtube-api.js"></script>
 </body>
 
 </html>

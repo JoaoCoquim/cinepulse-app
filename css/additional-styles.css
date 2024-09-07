@@ -91,7 +91,7 @@
   background-color: #f88d6f;
 }
 
-#warning {
+#warnings {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -110,7 +110,7 @@
 @media (max-width: 1400px) {
 
     /* Big screens */
-    #warning {
+    #warnings {
       width: 50%;
     }
 }
@@ -132,7 +132,7 @@
     width: 35%;
   }
 
-  #warning {
+  #warnings {
     width: 60%;
   }
 }
@@ -171,7 +171,7 @@
     width: 35%;
   }
 
-  #warning {
+  #warnings {
     width: 65%;
   }
 }
@@ -193,7 +193,7 @@
     width: 40%;
   }
 
-  #warning {
+  #warnings {
     font-family: BebasNeue;
     font-size: 0.75rem;
     width: 60%;
@@ -215,7 +215,7 @@
     width: 50%;
   }
 
-  #warning {
+  #warnings {
     font-family: BebasNeue;
     font-size: 0.60rem;
   }

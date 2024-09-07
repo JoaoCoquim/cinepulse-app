@@ -56,8 +56,8 @@
                     <a class="btn btn-primary" id="searchButton" aria-label="Start searching movies">Start searching</a>
                     <div id="searchBar">
                         <ul id="suggestions" class="list-group"></ul>
-                        <input type="text" class="btn btn-light" id="searchInput" aria-label="Movie search input">
-                        <p id="warning" style="display: none;"></p>
+                        <input type="text" class="btn btn-light" id="searchInput" aria-label="Movie search input" autocomplete="off">
+                        <p id="warnings" style="display: none;"></p>
                     </div>
                 </div>
             </div>
@@ -230,7 +230,7 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="js/background-img.js"></script>
-    <script src="js/api.js"></script>
+    <script src="js/omdb-api.js"></script>
 </body>
 
 </html>
