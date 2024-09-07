@@ -1,18 +1,18 @@
-const apiKey = "1f70a320";
+const OMDB_API_KEY = window.config.OMDB_API_KEY;
 const suggestions = document.getElementById('suggestions');
 const warnings = document.getElementById('warnings');
 const moviesWithTwoLetters = ["A.I.", "B.S.", "CQ", "D2", "Da", "Em", "F/X", "Go", "Ho!", "I.Q.", "If", "If....", "IO", "It", "Jo", "Pi", "No", "PK", "RV", "Up", "Us", "W.E."];
 
 searchInput.addEventListener('input', function () {
     const query = searchInput.value.trim();
-    let apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${apiKey}`;
+    let apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${OMDB_API_KEY}`;
     let isTwoLetterMatch = false;
     //console.log('Query:', query);
 
     // Checks for 2 letter movies and handle them with specific title search (?t=)
     moviesWithTwoLetters.forEach(element => {
         if (query.length >= 2 && query.toLowerCase() === element.toLowerCase()) {
-            apiUrl = `https://www.omdbapi.com/?t=${element}&apikey=${apiKey}`;
+            apiUrl = `https://www.omdbapi.com/?t=${element}&apikey=${OMDB_API_KEY}`;
             isTwoLetterMatch = true;  // Marks this as a single movie query (from the array)
         }
     });
@@ -82,7 +82,7 @@ searchInput.addEventListener('input', function () {
 });
 
 function selectMovie(imdbID) {
-    const apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=${apiKey}`;
+    const apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=${OMDB_API_KEY}`;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
