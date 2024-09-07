@@ -1,6 +1,6 @@
 # CinePulse
 
-**CinePulse** is a web application designed to help users discover and explore movies. It utilizes the OMDb API to provide detailed movie information and dynamic visuals.
+**CinePulse** is a web application designed to help users discover and explore movies. It utilizes the OMDb API to provide detailed movie information and dynamic visuals, and now includes YouTube API integration for movie trailers.
 
 ## Features
 
@@ -35,6 +35,7 @@ To use the application:
 - **JavaScript**: For dynamic functionality and API integration.
 - **Bootstrap**: For responsive design.
 - **OMDb API**: For fetching movie data.
+- **YouTube Data API**: For embedding movie trailers.
 
 ## Current Status
 
