@@ -95,3 +95,35 @@ function selectMovie(imdbID) {
         })
         .catch(error => console.error('Error fetching movie data:', error));
 }
+
+
+// Logic to fetch and update movie posters for each card
+function getPosterCard(cardImageClass, cardTitleClass){
+    const cardImage = document.querySelector(cardImageClass);
+    const cardTitle = document.querySelector(cardTitleClass).innerText;
+
+    let apiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(cardTitle)}&apikey=${OMDB_API_KEY}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.Response === "True") {
+                cardImage.src = data.Poster;
+            } else {
+                console.error(`Error fetching data for ${cardTitle}:`, data.Error);
+            }
+        })
+        .catch(error => console.error('Error fetching poster card data:', error));
+}
+
+// Array of card image and title class pairs
+const cardClasses = [
+    { imageClass: '.first-card-img', titleClass: '.first-card-title' },
+    { imageClass: '.second-card-img', titleClass: '.second-card-title' },
+    { imageClass: '.third-card-img', titleClass: '.third-card-title' },
+    { imageClass: '.fourth-card-img', titleClass: '.fourth-card-title' }
+];
+
+cardClasses.forEach(card => {
+    getPosterCard(card.imageClass, card.titleClass);
+});
