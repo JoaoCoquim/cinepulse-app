@@ -12,9 +12,13 @@
 
 Here’s a glimpse of the application:
 
-![Search Suggestions](img/screenshots/homepage.jpg)
+![Homepage](img/screenshots/homepage.jpg)
 
-*Homepage Screen*
+*Homepage*
+
+![Search Suggestions](img/screenshots/search-suggestions.jpg)
+
+*Search suggestions Screen*
 
 ![Movie Details](img/screenshots/movie-details.jpg)
 
