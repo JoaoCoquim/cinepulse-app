@@ -12,9 +12,9 @@
 
 Here’s a glimpse of the application:
 
-![Search Suggestions](img/screenshots/search-suggestions.jpg)
+![Search Suggestions](img/screenshots/homepage.jpg)
 
-*Search Suggestions Screen*
+*Homepage Screen*
 
 ![Movie Details](img/screenshots/movie-details.jpg)
 
