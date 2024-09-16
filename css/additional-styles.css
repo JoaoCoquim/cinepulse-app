@@ -107,6 +107,12 @@
   text-align: center;
 }
 
+.ratings-logos {
+  width: 100px;
+  height: auto;
+  padding: 10px;
+}
+
 /* Media queries for responsive design */
 @media (max-width: 1400px) {
 

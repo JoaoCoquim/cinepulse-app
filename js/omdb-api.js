@@ -7,7 +7,6 @@ searchInput.addEventListener('input', function () {
     const query = searchInput.value.trim();
     let apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${OMDB_API_KEY}`;
     let isTwoLetterMatch = false;
-    //console.log('Query:', query);
 
     // Checks for 2 letter movies and handle them with specific title search (?t=)
     moviesWithTwoLetters.forEach(element => {
@@ -16,8 +15,6 @@ searchInput.addEventListener('input', function () {
             isTwoLetterMatch = true;  // Marks this as a single movie query (from the array)
         }
     });
-
-    //console.log('Fetching:', apiUrl);
 
     if (query.length > 1) {
         fetch(apiUrl)
@@ -97,8 +94,8 @@ function selectMovie(imdbID) {
 }
 
 
-// Logic to fetch and update movie posters for each card
-function getPosterCard(cardImageClass, cardTitleClass){
+// Fetches data and updates the content of each movie card on the homepage
+function createMovieCard(cardImageClass, cardTitleClass, imdbClass, rottenClass, metacriticClass) {
     const cardImage = document.querySelector(cardImageClass);
     const cardTitle = document.querySelector(cardTitleClass).innerText;
 
@@ -108,7 +105,17 @@ function getPosterCard(cardImageClass, cardTitleClass){
         .then(response => response.json())
         .then(data => {
             if (data.Response === "True") {
+                const imdbRating = data.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
+                const rottenTomatoesRating = data.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
+                const metacriticRating = data.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
+
+                // Assign the ratings to the correct elements of the corresponding card
+                document.querySelector(imdbClass).innerText += imdbRating;
+                document.querySelector(rottenClass).textContent += rottenTomatoesRating;
+                document.querySelector(metacriticClass).textContent += metacriticRating;
+
                 cardImage.src = data.Poster;
+
             } else {
                 console.error(`Error fetching data for ${cardTitle}:`, data.Error);
             }
@@ -118,12 +125,36 @@ function getPosterCard(cardImageClass, cardTitleClass){
 
 // Array of card image and title class pairs
 const cardClasses = [
-    { imageClass: '.first-card-img', titleClass: '.first-card-title' },
-    { imageClass: '.second-card-img', titleClass: '.second-card-title' },
-    { imageClass: '.third-card-img', titleClass: '.third-card-title' },
-    { imageClass: '.fourth-card-img', titleClass: '.fourth-card-title' }
+    {
+        imageClass: '.first-card-img',
+        titleClass: '.first-card-title',
+        imdbClass: '.first-card-imdbRating',
+        rottenClass: '.first-card-rottenTomatoesRating',
+        metacriticClass: '.first-card-metacriticRating'
+    },
+    {
+        imageClass: '.second-card-img',
+        titleClass: '.second-card-title',
+        imdbClass: '.second-card-imdbRating',
+        rottenClass: '.second-card-rottenTomatoesRating',
+        metacriticClass: '.second-card-metacriticRating'
+    },
+    {
+        imageClass: '.third-card-img',
+        titleClass: '.third-card-title',
+        imdbClass: '.third-card-imdbRating',
+        rottenClass: '.third-card-rottenTomatoesRating',
+        metacriticClass: '.third-card-metacriticRating'
+    },
+    {
+        imageClass: '.fourth-card-img',
+        titleClass: '.fourth-card-title',
+        imdbClass: '.fourth-card-imdbRating',
+        rottenClass: '.fourth-card-rottenTomatoesRating',
+        metacriticClass: '.fourth-card-metacriticRating'
+    }
 ];
 
 cardClasses.forEach(card => {
-    getPosterCard(card.imageClass, card.titleClass);
+    createMovieCard(card.imageClass, card.titleClass, card.imdbClass, card.rottenClass, card.metacriticClass);
 });
