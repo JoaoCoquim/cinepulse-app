@@ -97,12 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Fetches data and updates the content of each movie card on the homepage
-    function createMovieCard(cardImageClass, cardTitleClass, imdbClass, rottenClass, metacriticClass, cardLinkClass) {
+    function createMovieCard(movieTitle, cardImageClass, imdbClass, rottenClass, metacriticClass, cardLinkClass) {
         const cardImage = document.querySelector(cardImageClass);
-        const cardTitle = document.querySelector(cardTitleClass).innerText;
         const cardLink = document.querySelector(cardLinkClass);
 
-        let apiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(cardTitle)}&apikey=${OMDB_API_KEY}`;
+        let apiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${OMDB_API_KEY}`;
 
         fetch(apiUrl)
             .then(response => response.json())
@@ -125,13 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
                 } else {
-                    console.error(`Error fetching data for ${cardTitle}:`, data.Error);
+                    console.error(`Failed to fetch data for ${movieTitle}: ${data.Error}`);
                 }
             })
-            .catch(error => console.error('Error fetching poster card data:', error));
+            .catch(error => console.error('Error fetching movie data:', error));
     }
 
-    // Array of card image, title, and link class pairs
     const cardClasses = [
         {
             imageClass: '.first-card-img',
@@ -168,7 +166,17 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     cardClasses.forEach(card => {
-        createMovieCard(card.imageClass, card.titleClass, card.imdbClass, card.rottenClass, card.metacriticClass, card.cardLinkClass);
+        fetch('../top100movies.json')
+            .then(response => response.json())
+            .then(data => {
+                const movieTitlesArray = Object.keys(data);
+                const movieTitle = movieTitlesArray[Math.floor(Math.random() * movieTitlesArray.length)];
+                document.querySelector(card.titleClass).innerText = movieTitle; //fills the card with corresponding movie title
+
+                createMovieCard(movieTitle, card.imageClass, card.imdbClass, card.rottenClass, card.metacriticClass, card.cardLinkClass);
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+
     });
 
 });
