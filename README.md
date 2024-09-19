@@ -2,6 +2,10 @@
 
 **CinePulse** is a web application designed to help users discover and explore movies. It utilizes the OMDb API to provide detailed movie information, integrates the YouTube Data API to display movie trailers, and features a dynamic homepage with movie suggestions and ratings from popular review sites.
 
+## Live Demo
+
+You can view the live version of CinePulse [here](https://cinepulseapp.netlify.app/).
+
 ## Features
 
 - **Dynamic Homepage**: Displays movie suggestions and ratings based on data from popular review sites.
