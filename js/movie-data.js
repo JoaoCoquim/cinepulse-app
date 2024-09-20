@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('imdbLink').href = `https://www.imdb.com/title/${movieData.imdbID}`;
 
     // Rotten Tomatoes link
-    document.getElementById('rottenTomatoesLink').href = `https://www.rottentomatoes.com/`;
+    document.getElementById('rottenTomatoesLink').href = `https://www.rottentomatoes.com/search?search=${movieData.Title}`;
 
     // Metacritic link
-    document.getElementById('metacriticLink').href = `https://www.metacritic.com/`;
+    document.getElementById('metacriticLink').href = `https://www.metacritic.com/search/${movieData.Title}`;
 });

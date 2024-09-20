@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         `;
                             li.dataset.imdbID = data.imdbID;
-                            li.addEventListener('click', () => selectMovie(data.imdbID));
+                            li.addEventListener('click', () => selectMovieByImdbID(data.imdbID));
                             suggestions.appendChild(li);
                         } else {
                             // Process results from `?s=` (multiple movies)
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         `;
                                 li.dataset.imdbID = movie.imdbID;
-                                li.addEventListener('click', () => selectMovie(movie.imdbID));
+                                li.addEventListener('click', () => selectMovieByImdbID(movie.imdbID));
                                 suggestions.appendChild(li);
                             });
                         }
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function selectMovie(imdbID) {
+    function selectMovieByImdbID(imdbID) {
         const apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=${OMDB_API_KEY}`;
         fetch(apiUrl)
             .then(response => response.json())
@@ -105,25 +105,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fetch(apiUrl)
             .then(response => response.json())
-            .then(data => {
-                if (data.Response === "True") {
-                    const imdbRating = data.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
-                    const rottenTomatoesRating = data.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
-                    const metacriticRating = data.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
+            .then(movieData => {
+                if (movieData.Response === "True") {
+                    const imdbRating = movieData.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
+                    const rottenTomatoesRating = movieData.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
+                    const metacriticRating = movieData.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
 
                     // Assign the ratings to the correct elements of the corresponding card
-                    document.querySelector(imdbClass).innerText += imdbRating;
-                    document.querySelector(rottenClass).textContent += rottenTomatoesRating;
-                    document.querySelector(metacriticClass).textContent += metacriticRating;
+                    document.querySelector(imdbClass).innerHTML += imdbRating;
+                    document.querySelector(rottenClass).innerHTML += rottenTomatoesRating;
+                    document.querySelector(metacriticClass).innerHTML += metacriticRating;
 
                     // Update the card image source with the poster
-                    cardImage.src = data.Poster;
+                    cardImage.src = movieData.Poster;
 
                     // Set the href attribute of the card link
-                    cardLink.href = 'movie-info.html?movieData=' + encodeURIComponent(JSON.stringify(data));
+                    cardLink.href = 'movie-info.html?movieData=' + encodeURIComponent(JSON.stringify(movieData));
+
+                    // IMDb, Rotten Tomatoes and Metacritic links
+                    document.querySelector(imdbClass).href = `https://www.imdb.com/title/${movieData.imdbID}`;
+                    document.querySelector(rottenClass).href = `https://www.rottentomatoes.com/search?search=${movieData.Title}`;
+                    document.querySelector(metacriticClass).href = `https://www.metacritic.com/search/${movieData.Title}`;
 
                 } else {
-                    console.error(`Failed to fetch data for ${movieTitle}: ${data.Error}`);
+                    console.error(`Failed to fetch data for ${movieTitle}: ${movieData.Error}`);
                 }
             })
             .catch(error => console.error('Error fetching movie data:', error));
