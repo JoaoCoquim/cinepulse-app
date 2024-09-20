@@ -127,6 +127,12 @@
   object-fit: cover;
 }
 
+.movieTitles {
+  font-size: 1.25rem; /* Adjust as needed */
+  height: 2.2rem;
+  line-height: 1.2;
+}
+
 /* Media queries for responsive design */
 @media (max-width: 1400px) {
 

@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     cardClasses.forEach(card => {
-        fetch('../top100movies.json')
+        fetch('../data/top100movies.json')
             .then(response => response.json())
             .then(data => {
                 const movieTitlesArray = Object.keys(data);
