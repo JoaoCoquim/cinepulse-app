@@ -15,10 +15,16 @@ const images = [
 
 let currentImageIndex = Math.floor(Math.random() * images.length);
 
-// Function to change the background image
+// Preload images into an array of Image objects for faster loading
+const preloadedImages = images.map(image => {
+    const img = new Image();
+    img.src = image;
+    return img;
+});
+
 function changeBackgroundImage() {
     const masthead = document.querySelector('.masthead');
-    masthead.style.backgroundImage = `url(${images[currentImageIndex]})`;
+    masthead.style.backgroundImage = `url(${preloadedImages[currentImageIndex].src})`; // Use preloaded images
 
     // Update index to show the next image
     currentImageIndex = (currentImageIndex + 1) % images.length;
