@@ -133,13 +133,40 @@
   line-height: 1.2;
 }
 
+#contact {
+  padding-bottom: 4rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: #495057;
+  color: #fff;
+  border-radius: 100%;
+  font-size: 1.5rem;
+  margin: 0 0.75rem;
+}
+
+.social-icons .social-icon:hover {
+  background-color: #f4623a;
+}
+
 /* Media queries for responsive design */
 @media (max-width: 1400px) {
 
-    /* Big screens */
-    #warnings {
-      width: 50%;
-    }
+  /* Big screens */
+  #warnings {
+    width: 50%;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -178,6 +205,10 @@
 
   #searchInput {
     width: 35%;
+  }
+
+  #contact {
+    padding-bottom: 1rem;
   }
 }
 
