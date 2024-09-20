@@ -52,7 +52,7 @@
 }
 
 #searchBar {
-  display: none; /* Initially hide the search bar */
+  display: none;
   position: relative;
 }
 
@@ -128,7 +128,7 @@
 }
 
 .movieTitles {
-  font-size: 1.25rem; /* Adjust as needed */
+  font-size: 1.25rem;
   height: 2.2rem;
   line-height: 1.2;
 }
@@ -227,8 +227,6 @@
     border-radius: 0.65rem;
     text-overflow: ellipsis;
   }
-
-
 }
 
 @media (max-width: 420px) {
