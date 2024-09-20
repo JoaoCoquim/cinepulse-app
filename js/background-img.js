@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const images = [
         'img/movie-wallpapers/alien.jpg',
+        'img/movie-wallpapers/back-to-the-future.jpg',
         'img/movie-wallpapers/deadpool.jpg',
         'img/movie-wallpapers/et.jpg',
         'img/movie-wallpapers/inception.jpg',
@@ -10,8 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'img/movie-wallpapers/lord-of-the-rings.jpg',
         'img/movie-wallpapers/matrix.jpg',
         'img/movie-wallpapers/star-wars.jpg',
+        'img/movie-wallpapers/terminator.jpg',
+        'img/movie-wallpapers/the-lion-king.jpg',
+        'img/movie-wallpapers/titanic.jpg',
         'img/movie-wallpapers/up.jpg',
-        'img/movie-wallpapers/wall-e.jpg'
     ];
 
     let currentImageIndex = Math.floor(Math.random() * images.length);

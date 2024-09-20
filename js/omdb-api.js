@@ -1,16 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const OMDB_API_KEY = window.config.OMDB_API_KEY;
     const suggestions = document.getElementById('suggestions');
     const warnings = document.getElementById('warnings');
     const moviesWithTwoLetters = ["A.I.", "B.S.", "CQ", "D2", "Da", "Em", "F/X", "Go", "Ho!", "I.Q.", "If", "If....", "IO", "It", "Jo", "Pi", "No", "PK", "RV", "Up", "Us", "W.E."];
+    let debounceTimer;
 
-    searchInput.addEventListener('input', function () {
-        const query = searchInput.value.trim();
+    const fetchMovies = (query) => {
         let apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${OMDB_API_KEY}`;
         let isTwoLetterMatch = false;
 
-        // Checks for 2 letter movies and handle them with specific title search (?t=)
+        // Checks for 2 letter movies and handles them with specific title search (?t=)
         moviesWithTwoLetters.forEach(element => {
             if (query.length >= 2 && query.toLowerCase() === element.toLowerCase()) {
                 apiUrl = `https://www.omdbapi.com/?t=${element}&apikey=${OMDB_API_KEY}`;
@@ -62,12 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         // Handle other results
-                    } else if (data.Error === "Too many results.") {
-                        warnings.innerHTML = `<p id="error">Too many results. Please check your syntax!</p>`;
-                        warnings.style.display = 'block';
-                        suggestions.style.display = 'none';
-                    } else if (data.Error === "Movie not found!") {
-                        warnings.innerHTML = `<p id="error">Movie not found. Please check your syntax!</p>`;
+                    } else if (data.Error === "Too many results." || data.Error === "Movie not found!") {
+                        warnings.innerHTML = `<p id="error">No results found for "${query}"</p>`;
                         warnings.style.display = 'block';
                         suggestions.style.display = 'none';
                     } else {
@@ -78,7 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             suggestions.style.display = 'none';
         }
-    });
+    };
+
+    // Debounce function
+    function debounce(func, delay) {
+        return function () {
+            warnings.style.display = 'none';
+            clearTimeout(debounceTimer); // Clear the previous timer
+            debounceTimer = setTimeout(func, delay); // Set a new timer
+        };
+    }
+
+    searchInput.addEventListener('input', debounce(() => {
+        const query = searchInput.value.trim();
+        fetchMovies(query);
+    }, 1000)); // Delay in miliseconds
 
     function selectMovieByImdbID(imdbID) {
         const apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=${OMDB_API_KEY}`;
@@ -100,13 +109,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function createMovieCard(movieTitle, cardImageClass, imdbClass, rottenClass, metacriticClass, cardLinkClass) {
         const cardImage = document.querySelector(cardImageClass);
         const cardLink = document.querySelector(cardLinkClass);
-
         let apiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${OMDB_API_KEY}`;
 
         fetch(apiUrl)
             .then(response => response.json())
             .then(movieData => {
                 if (movieData.Response === "True") {
+                    // Set ratings
                     const imdbRating = movieData.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
                     const rottenTomatoesRating = movieData.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
                     const metacriticRating = movieData.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
@@ -116,13 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelector(rottenClass).innerHTML += rottenTomatoesRating;
                     document.querySelector(metacriticClass).innerHTML += metacriticRating;
 
-                    // Update the card image source with the poster
+                    // Update card poster and links
                     cardImage.src = movieData.Poster;
-
-                    // Set the href attribute of the card link
                     cardLink.href = 'movie-info.html?movieData=' + encodeURIComponent(JSON.stringify(movieData));
 
-                    // IMDb, Rotten Tomatoes and Metacritic links
+                    // Set links to external rating sites
                     document.querySelector(imdbClass).href = `https://www.imdb.com/title/${movieData.imdbID}`;
                     document.querySelector(rottenClass).href = `https://www.rottentomatoes.com/search?search=${movieData.Title}`;
                     document.querySelector(metacriticClass).href = `https://www.metacritic.com/search/${movieData.Title}`;
@@ -169,18 +176,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    cardClasses.forEach(card => {
-        fetch('../data/top100movies.json')
-            .then(response => response.json())
-            .then(data => {
-                const movieTitlesArray = Object.keys(data);
+    fetch('../data/top100movies.json')
+        .then(response => response.json())
+        .then(data => {
+            const movieTitlesArray = Object.keys(data);
+
+            cardClasses.forEach(card => {
                 const movieTitle = movieTitlesArray[Math.floor(Math.random() * movieTitlesArray.length)];
                 document.querySelector(card.titleClass).innerText = movieTitle; //fills the card with corresponding movie title
 
                 createMovieCard(movieTitle, card.imageClass, card.imdbClass, card.rottenClass, card.metacriticClass, card.cardLinkClass);
-            })
-            .catch(error => console.error('Error fetching JSON:', error));
-
-    });
-
+            });
+        })
+        .catch(error => console.error('Error fetching JSON:', error));
 });
