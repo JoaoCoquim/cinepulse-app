@@ -122,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Set the href attribute of the card link
                     cardLink.href = 'movie-info.html?movieData=' + encodeURIComponent(JSON.stringify(data));
 
-
                 } else {
                     console.error(`Failed to fetch data for ${movieTitle}: ${data.Error}`);
                 }

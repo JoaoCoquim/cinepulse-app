@@ -115,10 +115,22 @@
 
 .card {
   margin: 0 auto;
+  width: 18rem;
 }
 
-.card-custom {
-  width: 18rem;
+.card a {
+  text-decoration: none;
+  color: inherit;
+}
+.card a img {
+  transition: filter 0.4s;
+}
+.card a img:hover {
+  filter: brightness(0.8);
+}
+.card a h5:hover {
+  text-decoration: underline;
+  color: #f4623a;
 }
 
 .cardImages {
