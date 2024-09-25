@@ -14,18 +14,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchMovies = (query) => {
         let apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${OMDB_API_KEY}`;
         const lowerCaseQuery = query.toLowerCase();
-        let specialCaseApiUrl = null;
+        let numberedTitleApiUrl = null;
 
         // Check for 2 letter titles
-        moviesWithTwoLetters.forEach(element => {
-            if (query.length >= 2 && lowerCaseQuery === element.toLowerCase()) {
-                specialCaseApiUrl = `https://www.omdbapi.com/?t=${element}&apikey=${OMDB_API_KEY}`;
-            }
-        });
+        let foundTwoLetterMovie = moviesWithTwoLetters.find(element => lowerCaseQuery === element.toLowerCase());
+        if (foundTwoLetterMovie) {
+            let twoLetterApiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(foundTwoLetterMovie)}&apikey=${OMDB_API_KEY}`;
+            fetch(twoLetterApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.Response === "True") {
+                        suggestions.innerHTML = '';
+                        suggestions.style.display = 'block';
+                        warnings.style.display = 'none';
+                        addMovieToSuggestions(data, true);
+                    } else {
+                        warnings.innerHTML = `<p id="error">No results found for "${query}"</p>`;
+                        warnings.style.display = 'block';
+                        suggestions.style.display = 'none';
+                    }
+                })
+                .catch(error => console.error('Error fetching two-letter movie:', error));
+            return; // Exit after handling the two-letter movie
+        }
 
         // Check for numbered titles
         if (moviesWithNumbers[lowerCaseQuery]) {
-            specialCaseApiUrl = `https://www.omdbapi.com/?t=${moviesWithNumbers[lowerCaseQuery]}&apikey=${OMDB_API_KEY}`;
+            numberedTitleApiUrl = `https://www.omdbapi.com/?t=${moviesWithNumbers[lowerCaseQuery]}&apikey=${OMDB_API_KEY}`;
         }
 
         if (query.length > 1) {
@@ -38,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         warnings.style.display = 'none';
 
                         // If there's a special case, fetch that too
-                        if (specialCaseApiUrl) {
-                            fetch(specialCaseApiUrl)
+                        if (numberedTitleApiUrl) {
+                            fetch(numberedTitleApiUrl)
                                 .then(response => response.json())
                                 .then(specialData => {
                                     if (specialData.Response === "True") {
