@@ -3,19 +3,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const suggestions = document.getElementById('suggestions');
     const warnings = document.getElementById('warnings');
     const moviesWithTwoLetters = ["A.I.", "B.S.", "CQ", "D2", "Da", "Em", "F/X", "Go", "Ho!", "I.Q.", "If", "If....", "IO", "It", "Jo", "Pi", "No", "PK", "RV", "Up", "Us", "W.E."];
+    const moviesWithNumbers = {
+        "seven": "Se7en",
+        "thirteen": "Thir13en",
+        "megan": "M3GAN",
+        "simone": "S1m0ne",
+    };
     let debounceTimer;
 
     const fetchMovies = (query) => {
         let apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${OMDB_API_KEY}`;
-        let isTwoLetterMatch = false;
+        const lowerCaseQuery = query.toLowerCase();
+        let specialCaseApiUrl = null;
 
-        // Checks for 2 letter movies and handles them with specific title search (?t=)
+        // Check for 2 letter titles
         moviesWithTwoLetters.forEach(element => {
-            if (query.length >= 2 && query.toLowerCase() === element.toLowerCase()) {
-                apiUrl = `https://www.omdbapi.com/?t=${element}&apikey=${OMDB_API_KEY}`;
-                isTwoLetterMatch = true;  // Marks this as a single movie query (from the array)
+            if (query.length >= 2 && lowerCaseQuery === element.toLowerCase()) {
+                specialCaseApiUrl = `https://www.omdbapi.com/?t=${element}&apikey=${OMDB_API_KEY}`;
             }
         });
+
+        // Check for numbered titles
+        if (moviesWithNumbers[lowerCaseQuery]) {
+            specialCaseApiUrl = `https://www.omdbapi.com/?t=${moviesWithNumbers[lowerCaseQuery]}&apikey=${OMDB_API_KEY}`;
+        }
 
         if (query.length > 1) {
             fetch(apiUrl)
@@ -26,41 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         suggestions.style.display = 'block';
                         warnings.style.display = 'none';
 
-                        // Process results from movies with 2 letters
-                        if (isTwoLetterMatch) {
-                            const li = document.createElement('li');
-                            li.classList.add('list-group-item');
-                            li.innerHTML = `
-                            <div style="display: flex; align-items: center; padding: 10px; cursor: pointer;">
-                                <img src="${data.Poster}" alt="${data.Title} Poster" style="width: auto; height: 75px; margin-right: 10px; object-fit: cover;">
-                                <div>
-                                    <strong>${data.Title}</strong> (${data.Year})
-                                </div>
-                            </div>
-                        `;
-                            li.dataset.imdbID = data.imdbID;
-                            li.addEventListener('click', () => selectMovieByImdbID(data.imdbID));
-                            suggestions.appendChild(li);
-                        } else {
-                            // Process results from `?s=` (multiple movies)
-                            data.Search.forEach(movie => {
-                                const li = document.createElement('li');
-                                li.classList.add('list-group-item');
-                                li.innerHTML = `
-                            <div style="display: flex; align-items: center; padding: 10px; cursor: pointer;">
-                                <img src="${movie.Poster}" alt="${movie.Title} Poster" style="width: auto; height: 75px; margin-right: 10px; object-fit: cover;">
-                                <div>
-                                    <strong>${movie.Title}</strong> (${movie.Year})
-                                </div>
-                            </div>
-                        `;
-                                li.dataset.imdbID = movie.imdbID;
-                                li.addEventListener('click', () => selectMovieByImdbID(movie.imdbID));
-                                suggestions.appendChild(li);
-                            });
+                        // If there's a special case, fetch that too
+                        if (specialCaseApiUrl) {
+                            fetch(specialCaseApiUrl)
+                                .then(response => response.json())
+                                .then(specialData => {
+                                    if (specialData.Response === "True") {
+                                        // Add the special case movie to suggestions at the top
+                                        addMovieToSuggestions(specialData, true);
+                                    }
+                                })
+                                .catch(error => console.error('Error fetching special case movie data:', error));
                         }
 
-                        // Handle other results
+                        // Process results from regular search
+                        data.Search.forEach(movie => {
+                            addMovieToSuggestions(movie);
+                        });
                     } else if (data.Error === "Too many results." || data.Error === "Movie not found!") {
                         warnings.innerHTML = `<p id="error">No results found for "${query}"</p>`;
                         warnings.style.display = 'block';
@@ -74,6 +67,28 @@ document.addEventListener('DOMContentLoaded', () => {
             suggestions.style.display = 'none';
         }
     };
+
+    // Add movies to the suggestion list
+    function addMovieToSuggestions(movie, isSpecialCase = false) {
+        const li = document.createElement('li');
+        li.classList.add('list-group-item');
+        li.innerHTML = `
+                <div style="display: flex; align-items: center; padding: 10px; cursor: pointer;">
+                    <img src="${movie.Poster}" alt="${movie.Title} Poster" style="width: auto; height: 75px; margin-right: 10px; object-fit: cover;">
+                    <div>
+                        <strong>${movie.Title}</strong> (${movie.Year})
+                    </div>
+                </div>`;
+        li.dataset.imdbID = movie.imdbID;
+        li.addEventListener('click', () => selectMovieByImdbID(movie.imdbID));
+        suggestions.appendChild(li);
+
+        if (isSpecialCase) {
+            suggestions.prepend(li); // Add special case at the top
+        } else {
+            suggestions.appendChild(li); // Add regular movie at the end
+        }
+    }
 
     // Debounce function
     function debounce(func, delay) {
