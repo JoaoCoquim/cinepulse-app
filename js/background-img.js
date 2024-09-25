@@ -38,5 +38,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Change image every 5 seconds
     setInterval(changeBackgroundImage, 5000);
-
 });
