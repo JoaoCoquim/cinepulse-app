@@ -169,7 +169,8 @@
 }
 
 .social-icons .social-icon:hover {
-  background-color: #f4623a;
+  color: #fff;
+  transform: scale(1.2);
 }
 
 /* Media queries for responsive design */
