@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
         currentIndex = 2; // Sets index to third suggested movie on first Arrow Up press
         firstArrowUpPress = false;
       } else {
-        currentIndex = (currentIndex - 1 + suggestedMovies.length) % suggestedMovies.length; // Move up
+        currentIndex = (currentIndex - 1 + suggestedMovies.length) % suggestedMovies.length;
       }
       highlightMovie(currentIndex);
     } else if (event.key === "Enter" && currentIndex >= 0) {
@@ -44,6 +44,5 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Listen to keyboard events on the search input
   document.getElementById("searchInput").addEventListener("keydown", handleArrowNavigation);
 });
