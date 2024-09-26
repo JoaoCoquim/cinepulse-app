@@ -3,11 +3,6 @@
   src: url('../fonts/BebasNeue-Regular.ttf') format('truetype');
 }
 
-.main_logo {
-  height: 50px;
-  width: auto;
-}
-
 .masthead {
   background-color: #000;
   position: relative;
