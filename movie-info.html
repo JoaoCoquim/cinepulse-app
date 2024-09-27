@@ -9,21 +9,41 @@
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- Core theme CSS -->
+    <link href="css/styles.css" rel="stylesheet">
     <link href="css/movie-page-styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container mt-4">
-        <h1 id="title" class="mb-4"></h1>
-
-        <div class="row mb-4">
-            <div class="col-md-4 mb-4">
-                <img id="poster" class="img-fluid rounded" alt="Movie Poster">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html"><img class="main_logo" src="img/logos/cinepulse_logo.png"
+                    alt="CinePulse Logo"></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Homepage</a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-5 mb-4">
+        </div>
+    </nav>
+    <div class="container mt-4 main-body">
+        <h1 id="title" class="mb-4"></h1>
+        <div class="row">
+            <!-- Poster section -->
+            <div class="col-md-4 mb-4">
+                <img id="poster" alt="Movie Poster">
+            </div>
+            <!-- Info section -->
+            <div class="col-12 col-md-5 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled movie-info-container">
                             <li><span id="year"></span></li>
                             <li><span id="genre"></span></li>
                             <li><strong>Runtime:</strong> <span id="runtime"></span></li>
@@ -37,32 +57,35 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Ratings section -->
-            <div class="col-md-3">
+            <div class="col-12 col-md-3 mb-4">
+                <!-- Ratings section -->
                 <div class="row mb-4">
                     <div class="card">
                         <div class="card-body">
                             <ul class="list-unstyled font-weight-bold">
                                 <li class="rating-container">
                                     <a id="imdbLink" class="ratings-logos mb-2" target="_blank"><img
-                                            src="img/logos/IMDB_logo.svg" alt="IMDB logo"></a> <span
-                                        id="imdbRating"></span>
+                                            src="img/logos/IMDB_logo.svg" alt="IMDB logo">
+                                    </a>
+                                    <span id="imdbRating"></span>
                                 </li>
                                 <li class="rating-container">
                                     <a id="rottenTomatoesLink" class="ratings-logos" target="_blank"><img
-                                            src="img/logos/Rotten_Tomatoes_logo.svg" alt="Rotten Tomatoes logo"></a>
+                                            src="img/logos/Rotten_Tomatoes_logo.svg" alt="Rotten Tomatoes logo">
+                                    </a>
                                     <span id="rottenTomatoesRating"></span>
                                 </li>
                                 <li class="rating-container">
                                     <a id="metacriticLink" class="ratings-logos" target="_blank"><img
-                                            src="img/logos/Metacritic_logo.svg" alt="Metacritic logo"></a> <span
-                                        id="metacriticRating"></span>
+                                            src="img/logos/Metacritic_logo.svg" alt="Metacritic logo">
+                                    </a>
+                                    <span id="metacriticRating"></span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+                <!-- Trailer section -->
                 <div class="row">
                     <div class="trailer-wrapper">
                         <iframe id="trailerPlayer" src="" frameborder="0"
@@ -72,18 +95,21 @@
                 </div>
             </div>
         </div>
-
-
-
+        <!-- Plot section -->
         <div class="mb-4">
             <ul class="list-unstyled">
                 <li><strong id="plot"></strong></li>
             </ul>
         </div>
-        <a id="return" href="index.html">Return to Homepage</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SimpleLightbox plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
     <script src="js/api-keys.js"></script>
     <script src="js/movie-data.js"></script>
     <script src="js/youtube-api.js"></script>

@@ -168,9 +168,10 @@
   transform: scale(1.2);
 }
 
-/* Media queries for responsive design */
-@media (max-width: 1400px) {
 
+/* Media queries */
+
+@media (max-width: 1400px) {
   /* Big screens */
   #warnings {
     width: 50%;
@@ -178,7 +179,6 @@
 }
 
 @media (max-width: 1200px) {
-
   /* Small screens */
   #title {
     font-size: 5rem;
@@ -200,7 +200,6 @@
 }
 
 @media (max-width: 992px) {
-
   /* Tablet screens */
   #title {
     font-size: 4rem;
@@ -221,7 +220,6 @@
 }
 
 @media (max-width: 768px) {
-
   /* Small tablet screens */
   #title {
     font-size: 2rem;
@@ -243,7 +241,6 @@
 }
 
 @media (max-width: 576px) {
-
   /* Smartphone screens */
   #title {
     font-size: 2rem;
@@ -265,24 +262,5 @@
     width: 60%;
     border-radius: 0.65rem;
     text-overflow: ellipsis;
-  }
-}
-
-@media (max-width: 420px) {
-
-  /* Smartphone screens */
-  #searchButton {
-    width: 45%;
-    font-size: 0.55rem;
-  }
-
-  #searchInput {
-    font-size: 0.55rem;
-    width: 50%;
-  }
-
-  #warnings {
-    font-family: BebasNeue;
-    font-size: 0.60rem;
   }
 }
