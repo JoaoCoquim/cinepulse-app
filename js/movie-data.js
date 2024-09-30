@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('language').textContent = movieData.Language;
     document.getElementById('country').textContent = movieData.Country;
     document.getElementById('awards').textContent = movieData.Awards;
-    document.getElementById('poster').src = movieData.Poster;
+    document.getElementById('poster').src = movieData.Poster !== 'N/A' ? movieData.Poster : 'img/no-poster-available.jpg';
 
     document.title = movieData.Title;
 

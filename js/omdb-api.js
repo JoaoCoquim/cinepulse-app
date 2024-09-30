@@ -87,9 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function addMovieToSuggestions(movie, isSpecialCase = false) {
         const li = document.createElement('li');
         li.classList.add('list-group-item');
+        let moviePoster = movie.Poster !== 'N/A' ? movie.Poster : 'img/no-poster-available.jpg';
         li.innerHTML = `
                 <div style="display: flex; align-items: center; padding: 10px; cursor: pointer;">
-                    <img src="${movie.Poster}" alt="${movie.Title} Poster" style="width: auto; height: 75px; margin-right: 10px; object-fit: cover;">
+                    <img src="${moviePoster}" alt="${movie.Title} Poster" style="width: auto; height: 75px; margin-right: 10px; object-fit: cover;">
                     <div>
                         <strong>${movie.Title}</strong> (${movie.Year})
                     </div>
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelector(card.titleClass).innerText = `${movieTitle} (${movieData.Year})`;
 
                     // Set poster and links
-                    document.querySelector(card.imageClass).src = movieData.Poster;
+                    document.querySelector(card.imageClass).src = movieData.Poster !== 'N/A' ? movieData.Poster : 'img/no-poster-available.jpg';
                     document.querySelector(card.linkClass).href = 'movie-info.html?movieData=' + encodeURIComponent(JSON.stringify(movieData));
 
                     // Set ratings
