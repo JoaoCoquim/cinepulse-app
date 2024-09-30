@@ -82,6 +82,10 @@ li {
     align-items: center;
 }
 
+#placeholderImage {
+    border-radius: 8px;
+}
+
 #trailerPlayer {
     width: 100%;
 }

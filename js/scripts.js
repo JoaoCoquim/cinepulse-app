@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', () => {
-
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
@@ -46,27 +45,4 @@ window.addEventListener('DOMContentLoaded', () => {
     new SimpleLightbox({
         elements: '#portfolio a.portfolio-box'
     });
-
-});
-
-const searchButton = document.getElementById('searchButton');
-const searchBar = document.getElementById('searchBar');
-const searchInput = document.getElementById('searchInput');
-
-// Search Button behavior
-searchButton.onclick = function () {
-    if (searchBar.style.display === 'none' || searchBar.style.display === '') {
-        searchButton.style.display = 'none';
-        searchBar.style.display = 'block';
-        searchInput.focus();
-    } else {
-        searchBar.style.display = 'none';
-    }
-};
-
-document.addEventListener('click', (e) => {
-    if (!searchBar.contains(e.target)) {
-        suggestions.style.display = 'none';
-        warnings.style.display = 'none';
-    }
 });
