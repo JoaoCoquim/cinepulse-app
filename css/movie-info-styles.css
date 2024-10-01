@@ -82,8 +82,33 @@ li {
     align-items: center;
 }
 
+.image-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.image-container:hover {
+    filter: brightness(0.9);
+}
+
 #placeholderImage {
+    width: 100%;
     border-radius: 8px;
+}
+
+.play-button-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: white; /* Change to the color that suits your design */
+    cursor: pointer;
+}
+
+.image-container:hover .play-button-overlay {
+    filter: brightness(0.8);
 }
 
 #trailerPlayer {
@@ -92,7 +117,7 @@ li {
 
 .trailer-wrapper {
     position: relative;
-    width: 95%;
+    width: 100%;
     padding-top: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
