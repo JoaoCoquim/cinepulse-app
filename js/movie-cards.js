@@ -1,8 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const OMDB_API_KEY = window.config.OMDB_API_KEY;
+
     // Fetches data and updates the content of each movie card on the homepage
-    function createMovieCard(data, card) {
+    function createMovieCard(data, card, selectedTitles) {
         const movieTitlesArray = Object.keys(data);
-        const movieTitle = movieTitlesArray[Math.floor(Math.random() * movieTitlesArray.length)];
+        let movieTitle;
+
+        // Select a random movie title until a unique title is found
+        do {
+            movieTitle = movieTitlesArray[Math.floor(Math.random() * movieTitlesArray.length)];
+        } while (selectedTitles.has(movieTitle));
+
+        selectedTitles.add(movieTitle);
 
         let apiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${OMDB_API_KEY}`;
 
@@ -77,8 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('../data/top100movies.json')
         .then(response => response.json())
         .then(data => {
+            const selectedTitles = new Set();
             cardClasses.forEach(card => {
-                createMovieCard(data, card);
+                createMovieCard(data, card, selectedTitles);
             });
         })
         .catch(error => console.error('Error fetching JSON file:', error));
