@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('../fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -33,11 +38,48 @@ body {
 
 #searchBar {
     width: 70%;
+    position: relative;
 }
 
 #searchBar input {
     width: 100%;
     border: 1px solid #e0e0e0;
+}
+
+#suggestions {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    font-family: BebasNeue;
+    letter-spacing: 0.1rem;
+}
+
+#suggestions li {
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+#suggestions li:hover {
+    background-color: #f88d6f;
+}
+
+#warnings {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #d35400;
+    color: white;
+    font-family: BebasNeue;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px;
 }
 
 #title {
@@ -65,7 +107,7 @@ img {
     border-radius: 10px;
 }
 
-li {
+.card li {
     margin: 0.75rem;
 }
 
@@ -140,7 +182,8 @@ li {
 .trailer-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9 aspect ratio */
+    padding-top: 56.25%;
+    /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
     margin: 0 auto;
@@ -171,6 +214,10 @@ li {
 
     /* Big screens */
     .container {
+        width: 80%;
+    }
+
+    #warnings {
         width: 80%;
     }
 
@@ -234,6 +281,10 @@ li {
         width: 100%;
     }
 
+    #warnings {
+        width: 70%;
+    }
+
     #title {
         font-size: 2rem;
     }
@@ -271,6 +322,10 @@ li {
 
     /* Small tablet screens */
     .container {
+        width: 100%;
+    }
+
+    #warnings {
         width: 100%;
     }
 

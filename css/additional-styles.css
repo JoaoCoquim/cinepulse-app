@@ -89,17 +89,17 @@
 
 #warnings {
   position: absolute;
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: red;
+  background-color: #d35400;
   color: white;
   font-family: BebasNeue;
   letter-spacing: 1px;
-  height: 25px;
-  width: 45%;
-  border-radius: 100px;
+  border-radius: 10px;
   box-sizing: border-box;
   text-align: center;
+  padding: 5px;
 }
 
 .ratings-logos {
@@ -173,9 +173,7 @@
 
 @media (max-width: 1400px) {
   /* Big screens */
-  #warnings {
-    width: 50%;
-  }
+
 }
 
 @media (max-width: 1200px) {
@@ -192,10 +190,6 @@
 
   #searchInput {
     width: 35%;
-  }
-
-  #warnings {
-    width: 60%;
   }
 }
 
@@ -234,10 +228,6 @@
     font-size: 0.65rem;
     width: 35%;
   }
-
-  #warnings {
-    width: 65%;
-  }
 }
 
 @media (max-width: 576px) {
@@ -257,10 +247,6 @@
   }
 
   #warnings {
-    font-family: BebasNeue;
     font-size: 0.75rem;
-    width: 60%;
-    border-radius: 0.65rem;
-    text-overflow: ellipsis;
   }
 }
