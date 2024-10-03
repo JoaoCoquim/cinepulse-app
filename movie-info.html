@@ -24,7 +24,15 @@
                 data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                <!-- Search Bar -->
+                <div class="mx-auto" id="searchBar">
+                    <input type="text" class="btn btn-light" id="searchInput" aria-label="Movie search input"
+                        placeholder="Search for other movies..." autocomplete="off">
+                    <ul id="suggestions" class="list-group"></ul>
+                    <p id="warnings" style="display: none;"></p>
+                </div>
+                <!-- Nav links -->
+                <ul class="navbar-nav my-2 my-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Homepage</a>
                     </li>
@@ -118,6 +126,8 @@
     <script src="js/scripts.js"></script>
     <script src="js/api-keys.js"></script>
     <script src="js/movie-data.js"></script>
+    <script src="js/movie-search.js"></script>
+    <script src="js/movie-keyboard-navigation.js"></script>
     <script src="js/youtube-api.js"></script>
 </body>
 

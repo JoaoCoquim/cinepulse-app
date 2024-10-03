@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         warnings.style.display = 'none';
                         addMovieToSuggestions(data, true);
                     } else {
-                        warnings.innerHTML = `<p id="error">No results found for "${query}"</p>`;
+                        warnings.innerHTML = `<p>No results found for "${query}"</p>`;
                         warnings.style.display = 'block';
                         suggestions.style.display = 'none';
                     }
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             addMovieToSuggestions(movie);
                         });
                     } else if (data.Error === "Too many results." || data.Error === "Movie not found!") {
-                        warnings.innerHTML = `<p id="error">No results found for "${query}"</p>`;
+                        warnings.innerHTML = `<p>No results found for "${query}"</p>`;
                         warnings.style.display = 'block';
                         suggestions.style.display = 'none';
                     } else {
