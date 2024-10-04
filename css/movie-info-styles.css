@@ -16,10 +16,6 @@ body {
     padding-top: 50px;
 }
 
-.row {
-    margin: 0;
-}
-
 .container {
     width: 85%;
 }
@@ -96,9 +92,25 @@ body {
     color: white;
 }
 
+.row {
+    margin: 0;
+}
+
+.col-md-4 {
+    max-width: 330px;
+}
+
 img {
     width: 100%;
     height: auto;
+}
+
+#poster {
+    border-radius: 10px;
+}
+
+.col-md-5 {
+    flex-grow: 1;
 }
 
 .card {
@@ -110,8 +122,8 @@ img {
     margin: 0 auto;
 }
 
-#poster {
-    border-radius: 10px;
+.card-body {
+    padding: 15px;
 }
 
 .card li {
@@ -124,12 +136,17 @@ img {
     font-weight: 900;
 }
 
+.rating-container {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
 #imdbLink,
 #rottenTomatoesLink,
 #metacriticLink {
     display: inline-block;
     margin: 0 20px;
-
 }
 
 .ratings-logos {
@@ -145,12 +162,6 @@ img {
 #rottenTomatoesRating,
 #metacriticRating {
     font-size: 18px;
-}
-
-.rating-container {
-    justify-content: center;
-    display: flex;
-    align-items: center;
 }
 
 .image-container {
@@ -189,8 +200,7 @@ img {
 .trailer-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 56.25%;
-    /* 16:9 aspect ratio */
+    padding-top: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
     margin: 0 auto;
@@ -221,11 +231,40 @@ img {
 
     /* Big screens */
     .container {
-        width: 80%;
+        width: 85%;
     }
 
     #warnings {
         width: 80%;
+    }
+
+    .col-md-4 {
+        max-width: 310px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .card-body {
+        padding: 12px;
+    }
+
+    .card li {
+        margin: 0.6rem;
+    }
+
+    #title {
+        font-size: 2rem;
+    }
+
+    #year,
+    #genre {
+        font-size: 1.2rem;
+    }
+
+    .movie-info-container {
+        font-size: 0.9rem;
     }
 
     .ratings-logos {
@@ -246,13 +285,22 @@ img {
         width: 90%;
     }
 
-    .movie-info-container {
-        font-size: 0.9rem;
+    .card {
+        padding: 5px;
+        margin: 0 auto;
     }
 
-    .card {
-        padding: 10px;
-        margin: 0 auto;
+    #title {
+        font-size: 1.8rem;
+    }
+
+    #year,
+    #genre {
+        font-size: 1.1rem;
+    }
+
+    .movie-info-container {
+        font-size: 0.8rem;
     }
 
     .ratings-logos {
@@ -288,26 +336,41 @@ img {
         width: 70%;
     }
 
-    #title {
-        font-size: 2rem;
+    .col-md-4 {
+        max-width: 220px;
     }
 
     .card {
         width: 100%;
+    }
+
+    .card-body {
         padding: 5px;
+    }
+
+    .card li {
+        margin: 0.5rem;
+    }
+
+    #title {
+        font-size: 1.6rem;
     }
 
     #year,
     #genre {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 
     .movie-info-container {
         font-size: 0.7rem;
     }
 
+    li.rating-container {
+        margin: 2px;
+    }
+
     .ratings-logos {
-        min-width: 60px;
+        min-width: 50px;
     }
 
     #imdbRating,
@@ -317,7 +380,7 @@ img {
     }
 
     #plot {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 }
 
@@ -332,13 +395,25 @@ img {
         width: 100%;
     }
 
+    #title {
+        text-align: center;
+    }
+
+    .col-md-4 {
+        max-width: none;
+    }
+
+    #title {
+        font-size: 1.5rem;
+    }
+
     #year,
     #genre {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
     .movie-info-container {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .ratings-logos {
@@ -356,10 +431,6 @@ img {
 @media (max-width: 576px) {
 
     /* Smartphone screens */
-    #title {
-        text-align: center;
-    }
-
     li.rating-container {
         margin-bottom: 0;
     }
@@ -368,9 +439,5 @@ img {
     #rottenTomatoesRating,
     #metacriticRating {
         font-size: 20px;
-    }
-
-    #plot {
-        font-size: 1rem;
     }
 }
