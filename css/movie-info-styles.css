@@ -44,6 +44,13 @@ body {
 #searchBar input {
     width: 100%;
     border: 1px solid #e0e0e0;
+    font-family: BebasNeue, sans-serif;
+    letter-spacing: 0.1rem;
+}
+
+#searchBar input::placeholder {
+    font-family: sans-serif;
+    opacity: 0.6;
 }
 
 #suggestions {
@@ -54,7 +61,7 @@ body {
     max-height: 300px;
     overflow-y: auto;
     z-index: 1000;
-    font-family: BebasNeue;
+    font-family: BebasNeue, sans-serif;
     letter-spacing: 0.1rem;
 }
 
@@ -74,7 +81,7 @@ body {
     transform: translateX(-50%);
     background-color: #d35400;
     color: white;
-    font-family: BebasNeue;
+    font-family: BebasNeue, sans-serif;
     letter-spacing: 1px;
     border-radius: 10px;
     box-sizing: border-box;
