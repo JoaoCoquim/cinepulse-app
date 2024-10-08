@@ -80,6 +80,70 @@ document.addEventListener('DOMContentLoaded', () => {
             rottenClass: '.fourth-card-rottenTomatoesRating',
             metacriticClass: '.fourth-card-metacriticRating',
             linkClass: '.fourth-card-link'
+        },
+        {
+            imageClass: '.fifth-card-img',
+            titleClass: '.fifth-card-title',
+            imdbClass: '.fifth-card-imdbRating',
+            rottenClass: '.fifth-card-rottenTomatoesRating',
+            metacriticClass: '.fifth-card-metacriticRating',
+            linkClass: '.fifth-card-link'
+        },
+        {
+            imageClass: '.sixth-card-img',
+            titleClass: '.sixth-card-title',
+            imdbClass: '.sixth-card-imdbRating',
+            rottenClass: '.sixth-card-rottenTomatoesRating',
+            metacriticClass: '.sixth-card-metacriticRating',
+            linkClass: '.sixth-card-link'
+        },
+        {
+            imageClass: '.seventh-card-img',
+            titleClass: '.seventh-card-title',
+            imdbClass: '.seventh-card-imdbRating',
+            rottenClass: '.seventh-card-rottenTomatoesRating',
+            metacriticClass: '.seventh-card-metacriticRating',
+            linkClass: '.seventh-card-link'
+        },
+        {
+            imageClass: '.eighth-card-img',
+            titleClass: '.eighth-card-title',
+            imdbClass: '.eighth-card-imdbRating',
+            rottenClass: '.eighth-card-rottenTomatoesRating',
+            metacriticClass: '.eighth-card-metacriticRating',
+            linkClass: '.eighth-card-link'
+        },
+        {
+            imageClass: '.ninth-card-img',
+            titleClass: '.ninth-card-title',
+            imdbClass: '.ninth-card-imdbRating',
+            rottenClass: '.ninth-card-rottenTomatoesRating',
+            metacriticClass: '.ninth-card-metacriticRating',
+            linkClass: '.ninth-card-link'
+        },
+        {
+            imageClass: '.tenth-card-img',
+            titleClass: '.tenth-card-title',
+            imdbClass: '.tenth-card-imdbRating',
+            rottenClass: '.tenth-card-rottenTomatoesRating',
+            metacriticClass: '.tenth-card-metacriticRating',
+            linkClass: '.tenth-card-link'
+        },
+        {
+            imageClass: '.eleventh-card-img',
+            titleClass: '.eleventh-card-title',
+            imdbClass: '.eleventh-card-imdbRating',
+            rottenClass: '.eleventh-card-rottenTomatoesRating',
+            metacriticClass: '.eleventh-card-metacriticRating',
+            linkClass: '.eleventh-card-link'
+        },
+        {
+            imageClass: '.twelfth-card-img',
+            titleClass: '.twelfth-card-title',
+            imdbClass: '.twelfth-card-imdbRating',
+            rottenClass: '.twelfth-card-rottenTomatoesRating',
+            metacriticClass: '.twelfth-card-metacriticRating',
+            linkClass: '.twelfth-card-link'
         }
     ];
 

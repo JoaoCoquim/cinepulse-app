@@ -22,6 +22,8 @@
     <meta property="og:site_name" content="CinePulse" />
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Google fonts-->
@@ -96,124 +98,411 @@
         <div class="container px-4 px-lg-5">
             <h2 class="text-center mt-0">What to watch</h2>
             <hr class="divider" />
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-xl-3 col-md-6 col-12 text-center">
-                    <div class="card mt-4">
-                        <a class="first-card-link" target="_blank">
-                            <img class="first-card-img cardImages" src="" alt="Poster for Movie 1">
-                            <div class="card-body">
-                                <h5 class="first-card-title movieTitles"></h5>
+
+            <!-- Bootstrap Carousel -->
+            <div id="movieCarousel" class="carousel slide" data-bs-ride="false">
+                <!-- Carousel Inner (where slides go) -->
+                <div class="carousel-inner">
+                    <!-- Slide 1 (active) -->
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <!-- Movie Card 1 -->
+                            <div class="col-xl-3 col-md-3 col-sm-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="first-card-link" target="_blank">
+                                        <img class="first-card-img cardImages" src="" alt="Poster for Movie 1">
+                                        <div class="card-body">
+                                            <h5 class="first-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="first-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="first-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="first-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </a>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a class="first-card-imdbRating" target="_blank">
-                                    <img src="img/logos/IMDB_logo.svg" class="ratings-logos" alt="IMDB logo">
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a class="first-card-rottenTomatoesRating" target="_blank">
-                                    <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
-                                        alt="Rotten Tomatoes logo">
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a class="first-card-metacriticRating" target="_blank">
-                                    <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
-                                        alt="Metacritic logo">
-                                </a>
-                            </li>
-                        </ul>
+                            <!-- Movie Card 2 -->
+                            <div class="col-xl-3 col-md-3 col-sm-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="second-card-link" target="_blank">
+                                        <img class="second-card-img cardImages" src="" alt="Poster for Movie 2">
+                                        <div class="card-body">
+                                            <h5 class="second-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="second-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="second-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="second-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Movie Card 3 -->
+                            <div class="col-xl-3 col-md-3 col-sm-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="third-card-link" target="_blank">
+                                        <img class="third-card-img cardImages" src="" alt="Poster for Movie 3">
+                                        <div class="card-body">
+                                            <h5 class="third-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="third-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="third-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="third-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Movie Card 4 -->
+                            <div class="col-xl-3 col-md-3 col-sm-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="fourth-card-link" target="_blank">
+                                        <img class="fourth-card-img cardImages" src="" alt="Poster for Movie 4">
+                                        <div class="card-body">
+                                            <h5 class="fourth-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="fourth-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="fourth-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="fourth-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <!-- Movie Card 5 -->
+                            <div class="col-xl-3 col-md-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="fifth-card-link" target="_blank">
+                                        <img class="fifth-card-img cardImages" src="" alt="Poster for Movie 5">
+                                        <div class="card-body">
+                                            <h5 class="fifth-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="fifth-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="fifth-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="fifth-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Movie Card 6 -->
+                            <div class="col-xl-3 col-md-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="sixth-card-link" target="_blank">
+                                        <img class="sixth-card-img cardImages" src="" alt="Poster for Movie 6">
+                                        <div class="card-body">
+                                            <h5 class="sixth-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="sixth-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="sixth-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="sixth-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Movie Card 7 -->
+                            <div class="col-xl-3 col-md-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="seventh-card-link" target="_blank">
+                                        <img class="seventh-card-img cardImages" src="" alt="Poster for Movie 7">
+                                        <div class="card-body">
+                                            <h5 class="seventh-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="seventh-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="seventh-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="seventh-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Movie Card 8 -->
+                            <div class="col-xl-3 col-md-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="eighth-card-link" target="_blank">
+                                        <img class="eighth-card-img cardImages" src="" alt="Poster for Movie 8">
+                                        <div class="card-body">
+                                            <h5 class="eighth-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="eighth-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="eighth-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="eighth-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <!-- Movie Card 9 -->
+                            <div class="col-xl-3 col-md-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="ninth-card-link" target="_blank">
+                                        <img class="ninth-card-img cardImages" src="" alt="Poster for Movie 5">
+                                        <div class="card-body">
+                                            <h5 class="ninth-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="ninth-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="ninth-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="ninth-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Movie Card 10 -->
+                            <div class="col-xl-3 col-md-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="tenth-card-link" target="_blank">
+                                        <img class="tenth-card-img cardImages" src="" alt="Poster for Movie 6">
+                                        <div class="card-body">
+                                            <h5 class="tenth-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="tenth-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="tenth-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="tenth-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Movie Card 11 -->
+                            <div class="col-xl-3 col-md-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="eleventh-card-link" target="_blank">
+                                        <img class="eleventh-card-img cardImages" src="" alt="Poster for Movie 7">
+                                        <div class="card-body">
+                                            <h5 class="eleventh-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="eleventh-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="eleventh-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="eleventh-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Movie Card 12 -->
+                            <div class="col-xl-3 col-md-6 col-12 text-center">
+                                <div class="card mt-4">
+                                    <a class="twelfth-card-link" target="_blank">
+                                        <img class="twelfth-card-img cardImages" src="" alt="Poster for Movie 8">
+                                        <div class="card-body">
+                                            <h5 class="twelfth-card-title movieTitles"></h5>
+                                        </div>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a class="twelfth-card-imdbRating" target="_blank">
+                                                <img src="img/logos/IMDB_logo.svg" class="ratings-logos"
+                                                    alt="IMDB logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="twelfth-card-rottenTomatoesRating" target="_blank">
+                                                <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
+                                                    alt="Rotten Tomatoes logo">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="twelfth-card-metacriticRating" target="_blank">
+                                                <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
+                                                    alt="Metacritic logo">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6 col-12 text-center">
-                    <div class="card mt-4">
-                        <a class="second-card-link" target="_blank">
-                            <img class="second-card-img cardImages" src="" alt="Poster for Movie 2">
-                            <div class="card-body">
-                                <h5 class="second-card-title movieTitles"></h5>
-                            </div>
-                        </a>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a class="second-card-imdbRating" target="_blank">
-                                    <img src="img/logos/IMDB_logo.svg" class="ratings-logos" alt="IMDB logo">
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a class="second-card-rottenTomatoesRating" target="_blank">
-                                    <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
-                                        alt="Rotten Tomatoes logo">
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a class="second-card-metacriticRating" target="_blank">
-                                    <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
-                                        alt="Metacritic logo">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-12 text-center">
-                    <div class="card mt-4">
-                        <a class="third-card-link" target="_blank">
-                            <img class="third-card-img cardImages" src="" alt="Poster for Movie 3">
-                            <div class="card-body">
-                                <h5 class="third-card-title movieTitles"></h5>
-                            </div>
-                        </a>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a class="third-card-imdbRating" target="_blank">
-                                    <img src="img/logos/IMDB_logo.svg" class="ratings-logos" alt="IMDB logo">
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a class="third-card-rottenTomatoesRating" target="_blank">
-                                    <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
-                                        alt="Rotten Tomatoes logo">
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a class="third-card-metacriticRating" target="_blank">
-                                    <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
-                                        alt="Metacritic logo">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-12 text-center">
-                    <div class="card mt-4">
-                        <a class="fourth-card-link" target="_blank">
-                            <img class="fourth-card-img cardImages" src="" alt="Poster for Movie 4">
-                            <div class="card-body">
-                                <h5 class="fourth-card-title movieTitles"></h5>
-                            </div>
-                        </a>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a class="fourth-card-imdbRating" target="_blank">
-                                    <img src="img/logos/IMDB_logo.svg" class="ratings-logos" alt="IMDB logo">
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a class="fourth-card-rottenTomatoesRating" target="_blank">
-                                    <img src="img/logos/Rotten_Tomatoes_logo.svg" class="ratings-logos"
-                                        alt="Rotten Tomatoes logo">
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a class="fourth-card-metacriticRating" target="_blank">
-                                    <img src="img/logos/Metacritic_logo.svg" class="ratings-logos"
-                                        alt="Metacritic logo">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- End of Carousel Inner -->
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left"></i>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
+                    <i class="fas fa-chevron-right"></i>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
+            <!-- End of Bootstrap Carousel -->
         </div>
     </section>
     <!-- Portfolio-->
