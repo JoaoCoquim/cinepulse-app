@@ -18,7 +18,8 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
-  z-index: -1; /* Behind text */
+  z-index: -1;
+  /* Behind text */
 }
 
 #title {
@@ -59,8 +60,9 @@
   text-transform: uppercase;
   border-radius: 10rem;
   border: 1px solid #f4623a;
+  width: 30%;
   color: #f4623a;
-  transition: width 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out, opacity 0.5s ease-in-out, border-radius 3s ease-in-out;
 }
 
 #searchInputField:focus {
@@ -352,8 +354,12 @@
   }
 
   #searchInputField {
-    width: 60%;
+    width: 40%;
     font-size: 0.65rem;
+  }
+
+  #searchInputField:focus {
+    width: 80%;
   }
 
   #suggestionsList {
@@ -404,12 +410,12 @@
     width: 60%;
   }
 
-  #suggestionsList {
-    max-height: 290px;
-    width: 80%;
+  #searchInputField {
+    width: 60%;
   }
 
-  #searchInputField:focus {
+  #suggestionsList {
+    max-height: 290px;
     width: 80%;
   }
 
