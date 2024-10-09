@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         li.classList.add('list-group-item');
         let moviePoster = movie.Poster !== 'N/A' ? movie.Poster : 'img/no-poster-available.jpg';
         li.innerHTML = `
-                <div style="display: flex; align-items: center; padding: 10px; cursor: pointer;">
+                <div id="movie-suggestion" style="display: flex; align-items: center; padding: 5px; cursor: pointer;">
                     <img src="${moviePoster}" alt="${movie.Title} Poster" style="width: auto; height: 75px; margin-right: 10px; object-fit: cover;">
                     <div>
                         <strong>${movie.Title}</strong> (${movie.Year})

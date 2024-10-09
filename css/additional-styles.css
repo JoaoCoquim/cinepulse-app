@@ -60,8 +60,13 @@
   border-radius: 10rem;
   border: 1px solid #f4623a;
   color: #f4623a;
-  width: 30%;
-  max-width: 300px;
+  transition: width 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+}
+
+#searchInputField:focus {
+  width: 60%;
+  opacity: 1;
+  border-radius: 1rem;
 }
 
 #suggestionsList {
@@ -69,7 +74,7 @@
   bottom: 100%; /* Positioned above input */
   left: 50%;
   transform: translateX(-50%);
-  width: fit-content;
+  width: 60%;
   max-height: 300px;
   overflow-y: auto;
   z-index: 1000;
@@ -234,10 +239,6 @@
     font-size: 0.8rem;
   }
 
-  #searchInputField {
-    width: 35%;
-  }
-
   .card {
     width: 12rem;
   }
@@ -283,6 +284,15 @@
   /* Tablet screens */
   #title {
     font-size: 4rem;
+  }
+
+  #suggestionsList {
+    font-size: 0.9rem;
+    max-height: 290px;
+  }
+
+  #movie-suggestion {
+    font-size: 0.9rem;
   }
 
   .card {
@@ -337,13 +347,21 @@
   }
 
   #searchButton {
-    width: 35%;
+    width: 40%;
     font-size: 0.65rem;
   }
 
   #searchInputField {
+    width: 60%;
     font-size: 0.65rem;
-    width: 35%;
+  }
+
+  #suggestionsList {
+    max-height: 280px;
+  }
+
+  #movie-suggestion {
+    font-size: 0.8rem;
   }
 
   .card {
@@ -383,13 +401,16 @@
   }
 
   #searchButton {
-    width: 45%;
-    font-size: 0.65rem;
+    width: 60%;
   }
 
-  #searchInputField {
-    font-size: 0.65rem;
-    width: 40%;
+  #suggestionsList {
+    max-height: 290px;
+    width: 80%;
+  }
+
+  #searchInputField:focus {
+    width: 80%;
   }
 
   #warnings {
