@@ -46,12 +46,12 @@
   background-color: white;
 }
 
-#searchBar {
+#searchContainer {
   display: none;
   position: relative;
 }
 
-#searchInput {
+#searchInputField {
   box-sizing: border-box;
   padding: 1.25rem 2.255rem;
   font-size: 0.85rem;
@@ -64,7 +64,7 @@
   max-width: 300px;
 }
 
-#suggestions {
+#suggestionsList {
   position: absolute;
   bottom: 100%; /* Positioned above input */
   left: 50%;
@@ -78,12 +78,12 @@
   border: 1px solid #f4623a;
 }
 
-#suggestions li {
+#suggestionsList li {
   cursor: pointer;
   padding: 0.5rem;
 }
 
-#suggestions li:hover {
+#suggestionsList li:hover {
   background-color: #f88d6f;
 }
 
@@ -234,7 +234,7 @@
     font-size: 0.8rem;
   }
 
-  #searchInput {
+  #searchInputField {
     width: 35%;
   }
 
@@ -341,7 +341,7 @@
     font-size: 0.65rem;
   }
 
-  #searchInput {
+  #searchInputField {
     font-size: 0.65rem;
     width: 35%;
   }
@@ -387,7 +387,7 @@
     font-size: 0.65rem;
   }
 
-  #searchInput {
+  #searchInputField {
     font-size: 0.65rem;
     width: 40%;
   }

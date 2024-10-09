@@ -67,9 +67,9 @@
                     <p class="text-white-75 mb-5">Discover and learn about a wide range of films with our intuitive
                         interface, offering quick access to movie information and reviews.</p>
                     <a class="btn btn-primary" id="searchButton" aria-label="Start searching movies">Start searching</a>
-                    <div id="searchBar">
-                        <ul id="suggestions" class="list-group"></ul>
-                        <input type="text" class="btn btn-light" id="searchInput" aria-label="Movie search input"
+                    <div id="searchContainer">
+                        <ul id="suggestionsList" class="list-group"></ul>
+                        <input type="text" class="btn btn-light" id="searchInputField" aria-label="Movie search input"
                             autocomplete="off">
                         <span id="warnings" style="display: none;"></span>
                     </div>
@@ -282,8 +282,8 @@
     <script src="js/api-keys.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/background-img.js"></script>
-    <script src="js/search-button.js"></script>
-    <script src="js/search-bar.js"></script>
+    <script src="js/toggle-search-bar.js"></script>
+    <script src="js/hide-suggestions.js"></script>
     <script src="js/movie-search.js"></script>
     <script src="js/movie-cards.js"></script>
     <script src="js/movie-keyboard-navigation.js"></script>

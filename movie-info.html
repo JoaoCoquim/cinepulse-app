@@ -25,10 +25,10 @@
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <!-- Search Bar -->
-                <div class="mx-auto" id="searchBar">
-                    <input type="text" class="btn btn-light" id="searchInput" aria-label="Movie search input"
+                <div class="mx-auto" id="searchContainer">
+                    <input type="text" class="btn btn-light" id="searchInputField" aria-label="Movie search input"
                         placeholder="Search for other movies..." autocomplete="off">
-                    <ul id="suggestions" class="list-group"></ul>
+                    <ul id="suggestionsList" class="list-group"></ul>
                     <span id="warnings" style="display: none;"></span>
                 </div>
                 <!-- Nav links -->
@@ -125,7 +125,7 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="js/api-keys.js"></script>
-    <script src="js/search-bar.js"></script>
+    <script src="js/hide-suggestions.js"></script>
     <script src="js/movie-data.js"></script>
     <script src="js/movie-search.js"></script>
     <script src="js/movie-keyboard-navigation.js"></script>

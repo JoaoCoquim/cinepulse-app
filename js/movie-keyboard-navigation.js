@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const handleArrowNavigation = (event) => {
     // Updates suggestedMovies every time a key is pressed
-    suggestedMovies = document.querySelectorAll("#suggestions li");
+    suggestedMovies = document.querySelectorAll("#suggestionsList li");
 
     if (event.key === "ArrowDown") {
       event.preventDefault();
@@ -44,5 +44,5 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  document.getElementById("searchInput").addEventListener("keydown", handleArrowNavigation);
+  document.getElementById("searchInputField").addEventListener("keydown", handleArrowNavigation);
 });

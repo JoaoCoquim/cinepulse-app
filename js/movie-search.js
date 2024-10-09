@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const OMDB_API_KEY = window.config.OMDB_API_KEY;
-    const suggestions = document.getElementById('suggestions');
+    const suggestionsList = document.getElementById('suggestionsList');
     const warnings = document.getElementById('warnings');
     const moviesWithTwoLetters = ["A.I.", "B.S.", "CQ", "D2", "Da", "Em", "F/X", "Go", "Ho!", "I.Q.", "If", "If....", "IO", "It", "Jo", "Pi", "No", "PK", "RV", "Up", "Us", "W.E."];
     const moviesWithNumbers = {
@@ -24,14 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.Response === "True") {
-                        suggestions.innerHTML = '';
-                        suggestions.style.display = 'block';
+                        suggestionsList.innerHTML = '';
+                        suggestionsList.style.display = 'block';
                         warnings.style.display = 'none';
                         addMovieToSuggestions(data, true);
                     } else {
                         warnings.innerHTML = `<span>No results found for "${query}"</span>`;
                         warnings.style.display = 'inline-block';
-                        suggestions.style.display = 'none';
+                        suggestionsList.style.display = 'none';
                     }
                 })
                 .catch(error => console.error('Error fetching two-letter movie:', error));
@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.Response === "True") {
-                        suggestions.innerHTML = '';
-                        suggestions.style.display = 'block';
+                        suggestionsList.innerHTML = '';
+                        suggestionsList.style.display = 'block';
                         warnings.style.display = 'none';
 
                         // If there's a special case, fetch that too
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 .then(response => response.json())
                                 .then(specialData => {
                                     if (specialData.Response === "True") {
-                                        // Add the special case movie to suggestions at the top
+                                        // Add the special case movie to the top of the suggestions list
                                         addMovieToSuggestions(specialData, true);
                                     }
                                 })
@@ -72,18 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (data.Error === "Too many results." || data.Error === "Movie not found!") {
                         warnings.innerHTML = `<span>No results found for "${query}"</span>`;
                         warnings.style.display = 'inline-block';
-                        suggestions.style.display = 'none';
+                        suggestionsList.style.display = 'none';
                     } else {
-                        suggestions.style.display = 'none';
+                        suggestionsList.style.display = 'none';
                     }
                 })
                 .catch(error => console.error('Error fetching movie data:', error));
         } else {
-            suggestions.style.display = 'none';
+            suggestionsList.style.display = 'none';
         }
     };
 
-    // Add movies to the suggestion list
+    // Add movies to the suggestions list
     function addMovieToSuggestions(movie, isSpecialCase = false) {
         const li = document.createElement('li');
         li.classList.add('list-group-item');
@@ -97,12 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>`;
         li.dataset.imdbID = movie.imdbID;
         li.addEventListener('click', () => selectMovieByImdbID(movie.imdbID));
-        suggestions.appendChild(li);
+        suggestionsList.appendChild(li);
 
         if (isSpecialCase) {
-            suggestions.prepend(li); // Add special case at the top
+            suggestionsList.prepend(li); // Add special case at the top
         } else {
-            suggestions.appendChild(li); // Add regular movie at the end
+            suggestionsList.appendChild(li); // Add regular movie at the end
         }
     }
 
@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    searchInput.addEventListener('input', debounce(() => {
-        const query = searchInput.value.trim();
+    searchInputField.addEventListener('input', debounce(() => {
+        const query = searchInputField.value.trim();
         fetchMovies(query);
     }, 1000)); // Delay in miliseconds
 

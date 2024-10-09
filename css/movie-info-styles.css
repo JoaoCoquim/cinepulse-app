@@ -32,24 +32,24 @@ body {
     color: #dee2e6 !important;
 }
 
-#searchBar {
+#searchContainer {
     width: 70%;
     position: relative;
 }
 
-#searchBar input {
+#searchContainer input {
     width: 100%;
     border: 1px solid #e0e0e0;
     font-family: BebasNeue, sans-serif;
     letter-spacing: 0.1rem;
 }
 
-#searchBar input::placeholder {
+#searchContainer input::placeholder {
     font-family: sans-serif;
     opacity: 0.6;
 }
 
-#suggestions {
+#suggestionsList {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -61,12 +61,12 @@ body {
     letter-spacing: 0.1rem;
 }
 
-#suggestions li {
+#suggestionsList li {
     cursor: pointer;
     padding: 0.5rem;
 }
 
-#suggestions li:hover {
+#suggestionsList li:hover {
     background-color: #f88d6f;
 }
 
@@ -328,7 +328,7 @@ img {
         min-width: 90%;
     }
 
-    #searchBar {
+    #searchContainer {
         margin-top: 20px;
         width: 100%;
     }
