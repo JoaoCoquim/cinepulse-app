@@ -120,6 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchMovies(query);
     }, 1000)); // Delay in miliseconds
 
+    searchInputField.addEventListener("click", () => {
+        const query = searchInputField.value.trim();
+        if(query !== ""){
+            fetchMovies(query);
+        }
+    });
+
     function selectMovieByImdbID(imdbID) {
         const apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=${OMDB_API_KEY}`;
         fetch(apiUrl)
