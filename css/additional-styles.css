@@ -241,6 +241,18 @@
     font-size: 0.8rem;
   }
 
+  #searchInputField {
+    width: 35%;
+  }
+  
+  #searchInputField:focus {
+    width: 70%;
+  }
+
+  #suggestionsList {
+    width: 70%;
+  }
+
   .card {
     width: 12rem;
   }
@@ -363,6 +375,7 @@
   }
 
   #suggestionsList {
+    width: 80%;
     max-height: 280px;
   }
 
@@ -396,7 +409,6 @@
   .carousel-control-next {
     right: -60px;
   }
-
 }
 
 @media (max-width: 576px) {
@@ -407,11 +419,13 @@
   }
 
   #searchButton {
-    width: 60%;
+    width: 45%;
+    font-size: 0.6rem;
+    padding: 1rem 1.5rem;
   }
 
   #searchInputField {
-    width: 60%;
+    width: 45%;
   }
 
   #suggestionsList {

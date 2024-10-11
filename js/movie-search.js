@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         suggestionsList.style.display = 'none';
                     }
                 })
-                .catch(error => console.error('Error fetching movie data:', error));
+                .catch(error => logError('movie-search.js', 'fetchMovies', error));
         } else {
             suggestionsList.style.display = 'none';
         }
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>`;
         li.dataset.imdbID = movie.imdbID;
-        li.addEventListener('click', () => selectMovieByImdbID(movie.imdbID));
+        li.addEventListener('click', () => fetchMovieByImdbID(movie.imdbID));
         suggestionsList.appendChild(li);
 
         if (isSpecialCase) {
@@ -122,23 +122,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInputField.addEventListener("click", () => {
         const query = searchInputField.value.trim();
-        if(query !== ""){
+        if (query !== "") {
             fetchMovies(query);
         }
     });
 
-    function selectMovieByImdbID(imdbID) {
+    function fetchMovieByImdbID(imdbID) {
         const apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=${OMDB_API_KEY}`;
         fetch(apiUrl)
             .then(response => response.json())
-            .then(data => {
-                if (data.Response === "True") {
-                    const movieDataString = JSON.stringify(data);
-                    window.location.href = 'movie-info.html?movieData=' + encodeURIComponent(movieDataString);
+            .then(movieData => {
+                if (movieData.Response === "True") {
+                    const formattedTitle = movieData.Title.replace(/\s+/g, '_').toLowerCase();
+                    window.location.href = `movie-info.html?title=${formattedTitle}&year=${movieData.Year}&imdbID=${imdbID}`;
                 } else {
                     alert('Movie not found!');
                 }
             })
-            .catch(error => console.error('Error fetching movie data:', error));
+            .catch(error => logError('movie-search.js', 'fetchMovieByImdbID', error));
+    }
+
+    function logError(fileName, functionName, error) {
+        console.error(`[${fileName} - ${functionName}] Error:`, error);
     }
 });
