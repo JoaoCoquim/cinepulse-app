@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('awards').textContent = movieData.Awards;
         document.getElementById('poster').src = movieData.Poster !== 'N/A' ? movieData.Poster : 'img/no-poster-available.jpg';
 
-        document.title = movieData.Title;
+        document.title = `${movieData.Title} (${movieData.Year}) - CinePulse`;
 
         // Set Ratings
         const imdbRating = movieData.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
