@@ -99,6 +99,7 @@ body {
 #suggestionsList {
     position: absolute;
     left: 50%;
+    top: 100%;
     transform: translateX(-50%);
     width: 100%;
     max-height: 300px;
