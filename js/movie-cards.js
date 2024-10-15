@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     newCard.querySelector('.card-title').innerText = `${movieTitle} (${movieData.Year})`;
 
                     // Set links and poster
-                    newCard.querySelector('.card-link').href = 'movie-info.html?movieData=' + encodeURIComponent(JSON.stringify(movieData));
+                    const formattedTitle = movieData.Title.replace(/\s+/g, '_').toLowerCase();
+                    newCard.querySelector('.card-link').href = `movie-info.html?title=${formattedTitle}&year=${movieData.Year}&imdbID=${movieData.imdbID}`;
                     newCard.querySelector('.card-img').src = movieData.Poster !== 'N/A' ? movieData.Poster : 'img/no-poster-available.jpg';
                     newCard.querySelector('.card-img').alt = `Poster for ${movieData.Title}`;
 
