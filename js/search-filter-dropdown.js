@@ -1,10 +1,13 @@
 window.addEventListener('DOMContentLoaded', () => {
-
     const dropbtn = document.querySelector('.dropbtn');
     const filterDropdown = document.getElementById("filterDropdown");
+    const suggestionsList = document.getElementById('suggestionsList');
+    const warnings = document.getElementById('warnings');
 
     dropbtn.addEventListener('click', (event) => {
         event.stopPropagation();
+        suggestionsList.style.display = 'none';
+        warnings.style.display = 'none';
         filterDropdown.classList.toggle("show");
     });
 
