@@ -1,0 +1,246 @@
+.card {
+    margin: 0 auto;
+    width: 18rem;
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card a img {
+    transition: filter 0.4s;
+}
+
+.card a img:hover {
+    filter: brightness(0.8);
+}
+
+.card a h5:hover {
+    text-decoration: underline;
+    color: #f4623a;
+}
+
+.card-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.15rem;
+    height: 2.2rem;
+    line-height: 1.2;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    font-size: 30px;
+    top: -25%;
+    color: white;
+}
+
+.svg-inline--fa.fa-chevron-left,
+.svg-inline--fa.fa-chevron-right {
+    border-radius: 5px;
+    padding: 20px 20px;
+    background-color: #f4623a;
+}
+
+.carousel-control-prev {
+    left: -140px;
+}
+
+.carousel-control-next {
+    right: -140px;
+}
+
+.ratings-logos {
+    width: 100px;
+    height: auto;
+    padding: 10px;
+}
+
+
+/* Media queries */
+
+@media (max-width: 1400px) {
+
+    /* Big screens */
+    .card {
+        width: 15rem;
+    }
+
+    .card-img {
+        height: 350px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        line-height: 1.1;
+    }
+
+    .carousel-control-prev {
+        left: -120px;
+    }
+
+    .carousel-control-next {
+        right: -120px;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    /* Small screens */
+    .card {
+        width: 12rem;
+    }
+
+    .card-body {
+        padding: 10px;
+    }
+
+    .card-img {
+        height: 300px;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+        height: 2rem;
+    }
+
+    .ratings-logos {
+        width: 80px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        font-size: 20px;
+    }
+
+    .svg-inline--fa.fa-chevron-left,
+    .svg-inline--fa.fa-chevron-right {
+        padding: 15px 15px;
+    }
+
+    .carousel-control-prev {
+        left: -100px;
+    }
+
+    .carousel-control-next {
+        right: -100px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    /* Tablet screens */
+    .card {
+        width: 9rem;
+    }
+
+    .card-body {
+        padding: 5px;
+    }
+
+    .card-img {
+        height: 240px;
+    }
+
+    .card-title {
+        font-size: 0.7rem;
+        height: 1.7rem;
+    }
+
+    li a {
+        font-size: 0.8rem;
+    }
+
+    .ratings-logos {
+        width: 60px;
+        padding: 5px;
+    }
+
+    .svg-inline--fa.fa-chevron-left,
+    .svg-inline--fa.fa-chevron-right {
+        padding: 8px 8px;
+    }
+
+    .carousel-control-prev {
+        left: -80px;
+    }
+
+    .carousel-control-next {
+        right: -80px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Small tablet screens */
+    .card {
+        width: 14rem;
+    }
+
+    .card-img {
+        height: 350px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        font-size: 30px;
+        top: 0;
+    }
+
+    .svg-inline--fa.fa-chevron-left,
+    .svg-inline--fa.fa-chevron-right {
+        padding: 50px 10px;
+    }
+
+    .carousel-control-prev {
+        left: -60px;
+    }
+
+    .carousel-control-next {
+        right: -60px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Smartphone screens */
+    .card {
+        width: 18rem;
+    }
+
+    .card-img {
+        height: 420px;
+    }
+
+    .card-title {
+        font-size: 1.15rem;
+        height: 2.2rem;
+        line-height: 1.2;
+    }
+
+    li a {
+        font-size: 1rem;
+    }
+
+    .ratings-logos {
+        width: 100px;
+    }
+
+    .svg-inline--fa.fa-chevron-left,
+    .svg-inline--fa.fa-chevron-right {
+        padding: 50px 10px;
+    }
+
+    .carousel-control-prev {
+        left: -23px;
+    }
+
+    .carousel-control-next {
+        right: -23px;
+    }
+}
