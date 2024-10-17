@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const filterDropdown = document.getElementById('filterDropdown');
     filterDropdown.innerHTML = '';
 
@@ -9,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
             data.genres.forEach(genre => {
                 const genreElement = document.createElement('a');
                 genreElement.classList.add('genre-item');
-                genreElement.href = '#';
                 genreElement.textContent = genre.name;
+                genreElement.href = `movies-by-genre.html?genre=${genre.name}`;
                 filterDropdown.appendChild(genreElement);
             })
         })
