@@ -10,6 +10,7 @@ You can view the live version of CinePulse [here](https://cinepulseapp.netlify.a
 
 - **Dynamic Homepage**: Displays movie suggestions and ratings based on data from popular review sites.
 - **Search Suggestions**: Real-time movie suggestions with images as you type.
+- **Genre Filtering**: Users can filter movies by genre, leading to a dedicated page displaying a list of movies from the selected genre.
 - **Detailed Movie Information**: Includes movie posters, ratings, and comprehensive details.
 - **YouTube Trailers**: Show trailers for movies directly on the movie info page.
 - **Dynamic UI**: Responsive and user-friendly interface for an enhanced browsing experience.
@@ -40,19 +41,22 @@ To use the application:
 3. Open `index.html` in your browser to view the application.
 4. Type a movie name in the search bar.
 5. View real-time suggestions and select a movie to see detailed information.
+6. Click on a genre from the filter, to view a list of movies of that genre on a new page.
 
 ## Technologies Used
 
 - **JavaScript**: For dynamic functionality and API integration.
 - **Bootstrap**: For responsive design.
 - **OMDb API**: For fetching movie data.
+- **TMDb API**: For filtering movies by genre and providing movie data.
 - **YouTube Data API**: For embedding movie trailers.
 - **Font Awesome**: For icons and visual elements.
 
 ## Current Status
 
-**In Development**: The project is actively being developed with ongoing updates and feature additions. The application now includes movie trailers and a new 'What to watch' homepage section with a carousel of movie suggestions. Further improvements are underway.
+**In Development**: The project is actively being developed with ongoing updates and feature additions. The application now includes movie trailers, a new 'What to Watch' homepage section with a carousel of movie suggestions, and a genre filtering feature that utilizes the TMDb API. Further improvements are underway, including potential migration to solely using the TMDb API.
 
-## License
+## Licenses
 
-This project is licensed under the MIT License.
+- This project is licensed under the MIT License.
+- This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.
