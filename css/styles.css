@@ -1264,3 +1264,31 @@ header.masthead h1, header.masthead .h1 {
 #portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
 }
+
+.tmdb-section,
+.startbootstrap-section {
+  font-size: 0.75rem;
+}
+
+.tmdb-section img {
+  max-width: 300px;
+  height: auto;
+}
+
+@media (max-width: 576px) {
+  .copyright-section {
+    font-size: 0.85rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .tmdb-section,
+  .startbootstrap-section {
+    font-size: 0.65rem;
+    margin-bottom: 1rem;
+  }
+  
+  .tmdb-section img {
+    max-width: 80%;
+    height: auto;
+  }
+}

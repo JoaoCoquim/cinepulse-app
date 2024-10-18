@@ -2,6 +2,10 @@
     padding-top: 50px;
 }
 
+.page-section {
+    padding: 0 0 6rem 0;
+}
+
 #title {
     margin-top: 1rem;
     font-size: 2.5rem;
