@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const OMDB_API_KEY = window.config.OMDB_API_KEY;
     const suggestionsList = document.getElementById('suggestionsList');
     const warnings = document.getElementById('warnings');
+    const searchContainer = document.getElementById('searchContainer');
     const moviesWithTwoLetters = ["A.I.", "B.S.", "CQ", "D2", "Da", "Em", "F/X", "Go", "Ho!", "I.Q.", "If", "If....", "IO", "It", "Jo", "Pi", "No", "PK", "RV", "Up", "Us", "W.E."];
     const moviesWithNumbers = {
         "seven": "Se7en",
@@ -10,6 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
         "simone": "S1m0ne",
     };
     let debounceTimer;
+
+    // Hide movie suggestions and warnings when clicking outside the search container
+    document.addEventListener('click', (e) => {
+        if (!searchContainer.contains(e.target)) {
+            suggestionsList.style.display = 'none';
+            warnings.style.display = 'none';
+        }
+    });
 
     const fetchMovies = (query) => {
         let apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${OMDB_API_KEY}`;
