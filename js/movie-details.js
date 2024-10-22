@@ -1,48 +1,73 @@
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const imdbID = urlParams.get('imdbID');
-    const OMDB_API_KEY = window.config.OMDB_API_KEY;
-    let apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=${OMDB_API_KEY}`;
+    const tmdb_id = urlParams.get('id');
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(movieData => {
-            if (movieData.Response === "True") {
-                populateMovieDetails(movieData);
-            } else {
-                alert('Movie details not found!');
-            }
-        })
-        .catch(error => console.error('Error fetching movie details:', error));
+    function fetchMovieById(id) {
+        const TMDB_API_KEY = window.config.TMDB_API_KEY;
+        let apiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${TMDB_API_KEY}`;
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(movieData => {
+                if (movieData.id && movieData.title) {
+                    let imdbId = movieData.imdb_id;
+                    fetchByImdbId(imdbId);
+                } else {
+                    alert('Movie details not found!');
+                }
+            })
+            .catch(error => logError('movie-details.js', 'fetchMovieById', error));
+    }
 
-    function populateMovieDetails(movieData) {
+    function fetchByImdbId(imdbId) {
+        const OMDB_API_KEY = window.config.OMDB_API_KEY;
+        let apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbId)}&apikey=${OMDB_API_KEY}`;
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(movieData => {
+                if (movieData.Response === "True") {
+                    populateMovieDetails(movieData);
+                } else {
+                    alert('Movie details not found!');
+                }
+            })
+            .catch(error => logError('movie-details.js', 'fetchByImdbId', error));
+    }
+
+    function populateMovieDetails(movie) {
         // Set Movie Info
-        document.getElementById('title').textContent = movieData.Title;
-        document.getElementById('year').textContent = movieData.Year;
-        document.getElementById('runtime').textContent = movieData.Runtime;
-        document.getElementById('genre').textContent = movieData.Genre;
-        document.getElementById('director').textContent = movieData.Director;
-        document.getElementById('writer').textContent = movieData.Writer;
-        document.getElementById('actors').textContent = movieData.Actors;
-        document.getElementById('plot').textContent = movieData.Plot;
-        document.getElementById('language').textContent = movieData.Language;
-        document.getElementById('country').textContent = movieData.Country;
-        document.getElementById('awards').textContent = movieData.Awards;
-        document.getElementById('poster').src = movieData.Poster !== 'N/A' ? movieData.Poster : 'img/no-poster-available.jpg';
+        document.getElementById('title').textContent = movie.Title;
+        document.getElementById('year').textContent = movie.Year;
+        document.getElementById('runtime').textContent = movie.Runtime;
+        document.getElementById('genre').textContent = movie.Genre;
+        document.getElementById('director').textContent = movie.Director;
+        document.getElementById('writer').textContent = movie.Writer;
+        document.getElementById('actors').textContent = movie.Actors;
+        document.getElementById('plot').textContent = movie.Plot;
+        document.getElementById('language').textContent = movie.Language;
+        document.getElementById('country').textContent = movie.Country;
+        document.getElementById('awards').textContent = movie.Awards;
+        document.getElementById('poster').src = movie.Poster !== 'N/A' ? movie.Poster : 'img/no-poster-available.jpg';
 
-        document.title = `${movieData.Title} (${movieData.Year}) - CinePulse`;
+        document.title = `${movie.Title} (${movie.Year}) - CinePulse`;
 
         // Set Ratings
-        const imdbRating = movieData.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
-        const rottenTomatoesRating = movieData.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
-        const metacriticRating = movieData.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
+        const imdbRating = movie.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
+        const rottenTomatoesRating = movie.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
+        const metacriticRating = movie.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
         document.getElementById('imdbRating').textContent = imdbRating;
         document.getElementById('rottenTomatoesRating').textContent = rottenTomatoesRating;
         document.getElementById('metacriticRating').textContent = metacriticRating;
 
         // Set Links
-        document.getElementById('imdbLink').href = `https://www.imdb.com/title/${movieData.imdbID}`;
-        document.getElementById('rottenTomatoesLink').href = `https://www.rottentomatoes.com/search?search=${movieData.Title}`;
-        document.getElementById('metacriticLink').href = `https://www.metacritic.com/search/${movieData.Title}`;
+        document.getElementById('imdbLink').href = `https://www.imdb.com/title/${movie.imdbID}`;
+        document.getElementById('rottenTomatoesLink').href = `https://www.rottentomatoes.com/search?search=${movie.Title}`;
+        document.getElementById('metacriticLink').href = `https://www.metacritic.com/search/${movie.Title}`;
     }
+
+    function logError(fileName, functionName, error) {
+        console.error(`[${fileName} - ${functionName}] Error:`, error);
+    }
+
+    fetchMovieById(tmdb_id);
+
 });

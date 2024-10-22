@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const OMDB_API_KEY = window.config.OMDB_API_KEY;
+    const TMDB_API_KEY = window.config.TMDB_API_KEY;
     const suggestionsList = document.getElementById('suggestionsList');
     const warnings = document.getElementById('warnings');
     const searchContainer = document.getElementById('searchContainer');
@@ -137,13 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function fetchMovieByImdbID(imdbID) {
-        const apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&apikey=${OMDB_API_KEY}`;
+        const apiUrl = `https://api.themoviedb.org/3/find/${imdbID}?api_key=${TMDB_API_KEY}&external_source=imdb_id`;
         fetch(apiUrl)
             .then(response => response.json())
             .then(movieData => {
-                if (movieData.Response === "True") {
-                    const formattedTitle = movieData.Title.replace(/\s+/g, '_').toLowerCase();
-                    window.location.href = `movie-info.html?title=${formattedTitle}&year=${movieData.Year}&imdbID=${imdbID}`;
+                if (movieData.movie_results && movieData.movie_results.length > 0) {
+                    const movie = movieData.movie_results[0];
+                    const formattedTitle = movie.title.replace(/\s+/g, '_').toLowerCase();
+                    window.location.href = `movie-info.html?title=${formattedTitle}&id=${movie.id}`;
                 } else {
                     alert('Movie not found!');
                 }
