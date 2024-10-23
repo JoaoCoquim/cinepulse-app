@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const OMDB_API_KEY = window.config.OMDB_API_KEY;
-    const TMDB_API_KEY = window.config.TMDB_API_KEY;
     const suggestionsList = document.getElementById('suggestionsList');
     const warnings = document.getElementById('warnings');
     const searchContainer = document.getElementById('searchContainer');
@@ -22,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const fetchMovies = (query) => {
+        const OMDB_API_KEY = window.config.OMDB_API_KEY;
         let apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${OMDB_API_KEY}`;
         const lowerCaseQuery = query.toLowerCase();
         let numberedTitleApiUrl = null;
@@ -138,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function fetchMovieByImdbID(imdbID) {
+        const TMDB_API_KEY = window.config.TMDB_API_KEY;
         const apiUrl = `https://api.themoviedb.org/3/find/${imdbID}?api_key=${TMDB_API_KEY}&external_source=imdb_id`;
         fetch(apiUrl)
             .then(response => response.json())

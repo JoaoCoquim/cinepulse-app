@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fetchByImdbId(imdbId) {
         const OMDB_API_KEY = window.config.OMDB_API_KEY;
-        let apiUrl = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbId)}&apikey=${OMDB_API_KEY}`;
+        let apiUrl = `https://www.omdbapi.com/?i=${imdbId}&apikey=${OMDB_API_KEY}`;
         fetch(apiUrl)
             .then(response => response.json())
             .then(movieData => {

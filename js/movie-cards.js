@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const OMDB_API_KEY = window.config.OMDB_API_KEY;
+    const TMDB_API_KEY = window.config.TMDB_API_KEY;
 
     // Fetches data and updates the content of each movie card on the homepage
     function createMovieCard(data, selectedTitles, rowElement) {
@@ -14,39 +15,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
         selectedTitles.add(movieTitle);
 
-        let apiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${OMDB_API_KEY}`;
+        let omdbApiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${OMDB_API_KEY}`;
 
         // Clone the movie card template
         const newCard = movieCardTemplate.cloneNode(true);
         newCard.style.display = 'block';
 
-        fetch(apiUrl)
+        fetch(omdbApiUrl)
             .then(response => response.json())
             .then(movieData => {
                 if (movieData.Response === "True") {
-                    // Set movie title and year
-                    newCard.querySelector('.card-title').innerText = `${movieTitle} (${movieData.Year})`;
 
-                    // Set links and poster
-                    const formattedTitle = movieData.Title.replace(/\s+/g, '_').toLowerCase();
-                    newCard.querySelector('.card-link').href = `movie-info.html?title=${formattedTitle}&year=${movieData.Year}&imdbID=${movieData.imdbID}`;
-                    newCard.querySelector('.card-img').src = movieData.Poster !== 'N/A' ? movieData.Poster : 'img/no-poster-available.jpg';
-                    newCard.querySelector('.card-img').alt = `Poster for ${movieData.Title}`;
+                    const imdbId = movieData.imdbID;
+                    let tmdbApiUrl = `https://api.themoviedb.org/3/find/${imdbId}?api_key=${TMDB_API_KEY}&external_source=imdb_id`;
 
-                    // Set ratings
-                    const imdbRating = movieData.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
-                    const rottenTomatoesRating = movieData.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
-                    const metacriticRating = movieData.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
+                    fetch(tmdbApiUrl)
+                        .then(tmdbResponse => tmdbResponse.json())
+                        .then(tmdbData => {
+                            if (tmdbData.movie_results.length > 0) {
 
-                    // Assign the ratings to the correct elements of the corresponding card
-                    newCard.querySelector('.imdbRating').innerHTML += imdbRating;
-                    newCard.querySelector('.rottenTomatoesRating').innerHTML += rottenTomatoesRating;
-                    newCard.querySelector('.metacriticRating').innerHTML += metacriticRating;
+                                let tmdbId = tmdbData.movie_results[0].id;
 
-                    // Set links to external rating sites
-                    newCard.querySelector('.imdbRating').href = `https://www.imdb.com/title/${movieData.imdbID}`;
-                    newCard.querySelector('.rottenTomatoesRating').href = `https://www.rottentomatoes.com/search?search=${movieData.Title}`;
-                    newCard.querySelector('.metacriticRating').href = `https://www.metacritic.com/search/${movieData.Title}`;
+                                // Set movie title and year
+                                newCard.querySelector('.card-title').innerText = `${movieTitle} (${movieData.Year})`;
+
+                                // Set links and poster
+                                const formattedTitle = movieData.Title.replace(/\s+/g, '_').toLowerCase();
+                                newCard.querySelector('.card-link').href = `movie-info.html?title=${formattedTitle}&id=${tmdbId}`;
+                                newCard.querySelector('.card-img').src = movieData.Poster !== 'N/A' ? movieData.Poster : 'img/no-poster-available.jpg';
+                                newCard.querySelector('.card-img').alt = `Poster for ${movieData.Title}`;
+
+                                // Set ratings
+                                const imdbRating = movieData.Ratings.find(r => r.Source === "Internet Movie Database")?.Value || "N/A";
+                                const rottenTomatoesRating = movieData.Ratings.find(r => r.Source === "Rotten Tomatoes")?.Value || "N/A";
+                                const metacriticRating = movieData.Ratings.find(r => r.Source === "Metacritic")?.Value || "N/A";
+
+                                // Assign the ratings to the correct elements of the corresponding card
+                                newCard.querySelector('.imdbRating').innerHTML += imdbRating;
+                                newCard.querySelector('.rottenTomatoesRating').innerHTML += rottenTomatoesRating;
+                                newCard.querySelector('.metacriticRating').innerHTML += metacriticRating;
+
+                                // Set links to external rating sites
+                                newCard.querySelector('.imdbRating').href = `https://www.imdb.com/title/${movieData.imdbID}`;
+                                newCard.querySelector('.rottenTomatoesRating').href = `https://www.rottentomatoes.com/search?search=${movieData.Title}`;
+                                newCard.querySelector('.metacriticRating').href = `https://www.metacritic.com/search/${movieData.Title}`;
+                            }
+                        });
                 } else {
                     console.error(`Failed to fetch data for ${movieTitle}: ${movieData.Error}`);
                     newCard.querySelector('.card-img').src = 'img/no-poster-available.jpg';
