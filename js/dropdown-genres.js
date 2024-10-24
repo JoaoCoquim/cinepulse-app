@@ -15,8 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
     window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
             let dropdowns = document.getElementsByClassName("dropdown-content");
-            let i;
-            for (i = 0; i < dropdowns.length; i++) {
+            for (let i = 0; i < dropdowns.length; i++) {
                 let openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
@@ -33,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 const genreElement = document.createElement('a');
                 genreElement.classList.add('genre-item');
                 genreElement.textContent = genre.name;
-                genreElement.href = `movies-by-genre.html?genre=${genre.name}`;
+                genreElement.href = `movies-by-genre.html?genre=${encodeURIComponent(genre.name)}`;
                 filterDropdown.appendChild(genreElement);
             })
         })

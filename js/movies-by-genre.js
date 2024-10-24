@@ -3,27 +3,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageSubtitle = document.querySelector('h1');
     const urlParams = new URLSearchParams(window.location.search);
     const genre = urlParams.get('genre');
+    let currentPage = Math.min(Number(urlParams.get('page')) || 1, 500); // Set currentPage to user input or default to 1, with a max. limit of 500
 
     pageTitle.textContent = `${genre} - CinePulse`;
     pageSubtitle.textContent = genre;
 
-    function getGenreId(movieGenre) {
+    // Fetch genres, find the one matching the current genre, and load its movies
+    function fetchMoviesByGenre(movieGenre) {
         fetch('./data/tmdb_genres.json')
             .then(response => response.json())
             .then(data => {
                 data.genres.forEach(genre => {
                     if (genre.name === movieGenre) {
-                        loadMoviesByGenreId(genre.id);
+                        loadMoviesByGenreId(genre.id, genre.name);
                     }
                 })
             })
             .catch(error => logError('fetch-movies-by-genre.js', 'fetchGenreId', error));
     }
 
-    function loadMoviesByGenreId(id) {
+    function loadMoviesByGenreId(genreId, genreName) {
         const TMDB_API_KEY = window.config.TMDB_API_KEY;
-        let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${id}`;
-
+        let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&page=${currentPage}`;
         fetch(apiUrl)
             .then(response => response.json())
             .then(moviesData => {
@@ -42,11 +43,81 @@ document.addEventListener('DOMContentLoaded', () => {
                         fetchMovieDetailsByTmdbId(movie.id, currentRow);
                     });
 
+                    updatePagination(Math.min(moviesData.total_pages, 500), genreName);
+
                 } else {
                     alert('No movie details were found for that genre!');
                 }
             })
             .catch(error => logError('fetch-movies-by-genre.js', 'fetchMoviesByGenreId', error));
+    }
+
+    function updatePagination(totalPages, genreName) {
+        const paginationContainer = document.querySelector('.pagination');
+        paginationContainer.innerHTML = '';
+
+        // "Previous" button
+        const previousPageItem = document.createElement('li');
+        previousPageItem.classList.add('page-item');
+        if (currentPage === 1) {
+            previousPageItem.classList.add('disabled');
+        }
+        const previousPageLink = document.createElement('a');
+        previousPageLink.classList.add('page-link');
+        previousPageLink.textContent = 'Previous';
+        previousPageLink.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                previousPageLink.href = `movies-by-genre.html?genre=${encodeURIComponent(genreName)}&page=${currentPage}`;
+            }
+        });
+        previousPageItem.appendChild(previousPageLink);
+        paginationContainer.appendChild(previousPageItem);
+
+        // Numbered buttons
+        let startPage = Math.max(1, currentPage - 1);
+        let endPage = Math.min(totalPages, startPage + 2);
+
+        if (endPage - startPage < 2) {
+            startPage = Math.max(1, endPage - 2); // Adjusts startPage if there's less than 3 visible pages
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            const pageItem = document.createElement('li');
+            pageItem.classList.add('page-item');
+            if (i === currentPage) {
+                pageItem.classList.add('active');
+            }
+
+            const pageLink = document.createElement('a');
+            pageLink.classList.add('page-link');
+            pageLink.textContent = i;
+            pageLink.addEventListener('click', () => {
+                currentPage = i; // Updates current page
+                pageLink.href = `movies-by-genre.html?genre=${encodeURIComponent(genreName)}&page=${currentPage}`;
+            });
+
+            pageItem.appendChild(pageLink);
+            paginationContainer.appendChild(pageItem);
+        }
+
+        // "Next" button
+        const nextPageItem = document.createElement('li');
+        nextPageItem.classList.add('page-item');
+        if (currentPage === totalPages) {
+            nextPageItem.classList.add('disabled');
+        }
+        const nextPageLink = document.createElement('a');
+        nextPageLink.classList.add('page-link');
+        nextPageLink.textContent = 'Next';
+        nextPageLink.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                nextPageLink.href = `movies-by-genre.html?genre=${encodeURIComponent(genreName)}&page=${currentPage}`;
+            }
+        });
+        nextPageItem.appendChild(nextPageLink);
+        paginationContainer.appendChild(nextPageItem);
     }
 
     function fetchMovieDetailsByTmdbId(tmdbId, rowElement) {
@@ -60,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (movieData.imdb_id) {
                         // Creates movieInfo object to store variables
                         const movieInfo = { tmdbId, rowElement };
-                        fetchMovieDetailsFromOmdb(movieData.imdb_id, movieInfo);
+                        fetchOmdbMovieDetails(movieData.imdb_id, movieInfo);
                     } else {
                         console.warn(`IMDb ID not found for TMDB ID: ${tmdbId}. Skipping fetch for OMDb.`);
                     }
@@ -71,14 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => logError('fetch-movies-by-genre.js', 'getImdbId', error));
     }
 
-    function fetchMovieDetailsFromOmdb(imdbId, movieInfo) {
+    function fetchOmdbMovieDetails(imdbId, movieInfo) {
         const OMDB_API_KEY = window.config.OMDB_API_KEY;
         let apiUrl = `https://www.omdbapi.com/?i=${imdbId}&apikey=${OMDB_API_KEY}`;
         fetch(apiUrl)
             .then(response => response.json())
             .then(movieData => {
                 if (movieData.Response === "True") {
-                    populateMovieDetails(movieData, movieInfo);
+                    populateMovieCard(movieData, movieInfo);
                 } else {
                     alert('Some movie details were not found!');
                 }
@@ -86,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => logError('movie-details.js', 'fetchMovieByImdbId', error));
     }
 
-    function populateMovieDetails(movie, { tmdbId, rowElement }) {
+    function populateMovieCard(movie, { tmdbId, rowElement }) {
         const movieCardTemplate = document.getElementById('movie-card-template');
 
         // Clone the movie card template
@@ -125,6 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error(`[${fileName} - ${functionName}] Error:`, error);
     }
 
-    getGenreId(genre);
+    fetchMoviesByGenre(genre);
 
 });

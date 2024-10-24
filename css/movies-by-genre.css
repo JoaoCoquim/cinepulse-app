@@ -1,3 +1,24 @@
+.page-link {
+    background-color: inherit; /* Darker background for page links */
+    border: none;
+}
+
+.page-item.active .page-link {
+    background-color: #f4623a; /* Accent color for the active page */
+    color: black;
+}
+
+/* Hover effect for pagination links */
+.page-link:hover {
+    background-color: #f4623a;
+    color: black;
+}
+
+/* Disabled link styling */
+.page-item.disabled .page-link {
+    background-color: inherit;
+}
+
 .card a {
     text-decoration: none;
     color: inherit;
