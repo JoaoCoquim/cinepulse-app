@@ -3,10 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageSubtitle = document.querySelector('h1');
     const urlParams = new URLSearchParams(window.location.search);
     const genre = urlParams.get('genre');
-    let currentPage = Math.min(Number(urlParams.get('page')) || 1, 500); // Set currentPage to user input or default to 1, with a max. limit of 500
+    // Set currentPage to user input or default to 1, with a max. limit of 500
+    let currentPage = Math.min(Number(urlParams.get('page')) || 1, 500);
 
-    pageTitle.textContent = `${genre} - CinePulse`;
-    pageSubtitle.textContent = genre;
+    const genreMap = {
+        "Sci-Fi": "Science Fiction",
+        "Sci Fi": "Science Fiction"
+    };
+
+    // Normalizes the genre from the URL, using the official name
+    const standardizedGenre = genreMap[genre] || genre;
+
+    pageTitle.textContent = `${standardizedGenre} - CinePulse`;
+    pageSubtitle.textContent = standardizedGenre;
 
     // Fetch genres, find the one matching the current genre, and load its movies
     function fetchMoviesByGenre(movieGenre) {
@@ -222,6 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error(`[${fileName} - ${functionName}] Error:`, error);
     }
 
-    fetchMoviesByGenre(genre);
+    fetchMoviesByGenre(standardizedGenre);
 
 });

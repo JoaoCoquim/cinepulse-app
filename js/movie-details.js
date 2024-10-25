@@ -34,11 +34,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function populateMovieDetails(movie) {
+
+        const genresArray = movie.Genre.split(', ');
+        const genresElement = document.getElementById('genre');
+        genresElement.innerHTML = '';
+
+        genresArray.forEach(genre => {
+            const createdElement = document.createElement('a');
+            createdElement.textContent = genre;
+            createdElement.href = `movies-by-genre.html?genre=${encodeURIComponent(genre)}`;
+            createdElement.classList.add('genre-link');
+            createdElement.target = '_blank';
+            genresElement.appendChild(createdElement);
+        });
+
         // Set Movie Info
         document.getElementById('title').textContent = movie.Title;
         document.getElementById('year').textContent = movie.Year;
         document.getElementById('runtime').textContent = movie.Runtime;
-        document.getElementById('genre').textContent = movie.Genre;
         document.getElementById('director').textContent = movie.Director;
         document.getElementById('writer').textContent = movie.Writer;
         document.getElementById('actors').textContent = movie.Actors;
