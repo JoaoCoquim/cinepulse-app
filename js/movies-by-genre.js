@@ -64,7 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const previousPageLink = document.createElement('a');
         previousPageLink.classList.add('page-link');
-        previousPageLink.textContent = 'Previous';
+        const chevronLeft = document.createElement('i');
+        chevronLeft.classList.add('fa-solid', 'fa-chevron-left', 'me-2');
+        previousPageLink.appendChild(chevronLeft);
+        previousPageLink.appendChild(document.createTextNode('Previous'));
         previousPageLink.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
@@ -78,8 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let startPage = Math.max(1, currentPage - 1);
         let endPage = Math.min(totalPages, startPage + 2);
 
+        // Adjusts startPage if there's less than 3 visible pages
         if (endPage - startPage < 2) {
-            startPage = Math.max(1, endPage - 2); // Adjusts startPage if there's less than 3 visible pages
+            startPage = Math.max(1, endPage - 2);
         }
 
         for (let i = startPage; i <= endPage; i++) {
@@ -93,12 +97,31 @@ document.addEventListener('DOMContentLoaded', () => {
             pageLink.classList.add('page-link');
             pageLink.textContent = i;
             pageLink.addEventListener('click', () => {
-                currentPage = i; // Updates current page
+                currentPage = i;
                 pageLink.href = `movies-by-genre.html?genre=${encodeURIComponent(genreName)}&page=${currentPage}`;
             });
 
             pageItem.appendChild(pageLink);
             paginationContainer.appendChild(pageItem);
+        }
+
+        // Add ellipsis and total pages
+        if (currentPage < totalPages - 1) {
+            const ellipsisItem = document.createElement('li');
+            ellipsisItem.classList.add('page-item', 'disabled');
+            const ellipsisLink = document.createElement('a');
+            ellipsisLink.classList.add('page-link', 'ellipsis');
+            ellipsisLink.textContent = '...';
+            ellipsisItem.appendChild(ellipsisLink);
+            paginationContainer.appendChild(ellipsisItem);
+
+            const totalPagesItem = document.createElement('li');
+            totalPagesItem.classList.add('page-item', 'disabled');
+            const totalPagesLink = document.createElement('a');
+            totalPagesLink.classList.add('page-link');
+            totalPagesLink.textContent = totalPages;
+            totalPagesItem.appendChild(totalPagesLink);
+            paginationContainer.appendChild(totalPagesItem);
         }
 
         // "Next" button
@@ -109,7 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const nextPageLink = document.createElement('a');
         nextPageLink.classList.add('page-link');
-        nextPageLink.textContent = 'Next';
+        const chevronRight = document.createElement('i');
+        chevronRight.classList.add('fa-solid', 'fa-chevron-right', 'ms-2');
+        nextPageLink.appendChild(document.createTextNode('Next'));
+        nextPageLink.appendChild(chevronRight);
         nextPageLink.addEventListener('click', () => {
             if (currentPage < totalPages) {
                 currentPage++;
