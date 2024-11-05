@@ -109,6 +109,28 @@
   padding: 5px;
 }
 
+.genre-card {
+  border: 3px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: filter 0.4s;
+  margin: 10px 0;
+}
+
+.genre-card:hover {
+  filter: brightness(0.7);
+  cursor: pointer;
+}
+
+.genre-card .card-body {
+  font-family: BebasNeue;
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  padding: 5px;
+}
+
 #contact {
   padding-bottom: 4rem;
 }
@@ -163,6 +185,10 @@
 
   #suggestionsList {
     width: 70%;
+  }
+
+  .genre-card .card-body{
+    font-size: 1.2rem;
   }
 }
 
@@ -242,5 +268,9 @@
 
   #warnings {
     font-size: 0.75rem;
+  }
+
+  .genre-card .card-body {
+    font-size: 1rem;
   }
 }

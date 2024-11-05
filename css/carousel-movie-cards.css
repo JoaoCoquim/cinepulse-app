@@ -1,4 +1,4 @@
-.card {
+#movie-card-template .card {
     margin: 0 auto;
     width: 18rem;
 }
@@ -68,7 +68,7 @@
 @media (max-width: 1400px) {
 
     /* Big screens */
-    .card {
+    #movie-card-template .card {
         width: 15rem;
     }
 
@@ -93,11 +93,11 @@
 @media (max-width: 1200px) {
 
     /* Small screens */
-    .card {
+    #movie-card-template .card {
         width: 12rem;
     }
 
-    .card-body {
+    .card-link .card-body {
         padding: 10px;
     }
 
@@ -136,11 +136,11 @@
 @media (max-width: 992px) {
 
     /* Tablet screens */
-    .card {
+    #movie-card-template .card {
         width: 9rem;
     }
 
-    .card-body {
+    .card-link .card-body {
         padding: 5px;
     }
 
@@ -179,7 +179,7 @@
 @media (max-width: 768px) {
 
     /* Small tablet screens */
-    .card {
+    #movie-card-template .card {
         width: 14rem;
     }
 
@@ -210,7 +210,7 @@
 @media (max-width: 576px) {
 
     /* Smartphone screens */
-    .card {
+    #movie-card-template .card {
         width: 18rem;
     }
 
