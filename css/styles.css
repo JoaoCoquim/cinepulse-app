@@ -1146,7 +1146,7 @@ hr.divider-light {
 #mainNav .navbar-nav .nav-item .nav-link:hover, #mainNav .navbar-nav .nav-item .nav-link:active {
   color: #f4623a;
 }
-@media (min-width: 992px) {
+@media (min-width: 576px) {
   #mainNav {
     box-shadow: none;
     background-color: transparent;
@@ -1186,8 +1186,9 @@ hr.divider-light {
 }
 
 header.masthead {
-  padding-top: 10rem;
-  padding-bottom: calc(10rem - 4.5rem);
+  height: 100vh;
+  min-height: 40rem;
+  padding: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1199,7 +1200,6 @@ header.masthead h1, header.masthead .h1 {
 }
 @media (min-width: 992px) {
   header.masthead {
-    height: 100vh;
     min-height: 40rem;
     padding-top: 4.5rem;
     padding-bottom: 0;
@@ -1253,8 +1253,7 @@ header.masthead h1, header.masthead .h1 {
   opacity: 1;
 }
 
-.tmdb-section,
-.startbootstrap-section {
+.tmdb-section {
   font-size: 0.75rem;
 }
 
@@ -1263,14 +1262,29 @@ header.masthead h1, header.masthead .h1 {
   height: auto;
 }
 
+@media ((min-width: 577px) and (max-width: 770px)){
+
+  img.main_logo {
+    height: 30px;
+  }
+
+  .nav-link {
+    font-size: 0.8rem !important;
+  }
+}
+
 @media (max-width: 576px) {
+
+  #title {
+    margin-top: 92px;
+  }
+
   .copyright-section {
     font-size: 0.85rem;
     margin-bottom: 1.3rem;
   }
 
-  .tmdb-section,
-  .startbootstrap-section {
+  .tmdb-section {
     font-size: 0.65rem;
     margin-bottom: 1rem;
   }
