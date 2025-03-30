@@ -9,7 +9,7 @@
 #title {
     margin-top: 1rem;
     font-size: 2.5rem;
-    font-weight: 900;
+    font-weight: 700;
     color: white;
 }
 
@@ -76,8 +76,7 @@ img {
     color: #cecece;
 }
 
-/* TEST CLASSES */
-.ratings-trailer-container{
+.ratings-trailer-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -370,7 +369,7 @@ img {
         padding: 3px 7px;
         margin-right: 4px;
     }
-    
+
     li.rating-container {
         margin-bottom: 0;
     }
